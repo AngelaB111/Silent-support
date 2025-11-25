@@ -1,0 +1,43 @@
+body {
+  background-color: #f8f8f8;
+}
+.body1 {
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+.container {
+  background-color: #f2f2f2;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-message,
+.reply {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+.reply {
+  font-weight: 500;
+}
+.no-reply {
+  color: #777;
+  font-style: italic;
+}

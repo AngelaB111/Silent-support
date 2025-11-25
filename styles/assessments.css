@@ -1,0 +1,56 @@
+
+    body {
+      font-family: "Georgia", serif;
+      background-color: #f3f3f3;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p.subtitle {
+      font-style: italic;
+      color: gray;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background-color: #fdfdfd;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      margin: 0;
+      font-family: "Times New Roman", serif;
+    }
+    .card button {
+      background-color: #f6d34c;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .card button:hover {
+      background-color: #ffe680;
+    }
+    .disclaimer {
+      margin-top: 4rem;
+      text-align: left;
+      color: #333;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .disclaimer b {
+      color: red ; } 

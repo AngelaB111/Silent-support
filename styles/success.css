@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background-color: #fffefa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+
+.check-icon {
+ 
+  font-size: 3rem;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.card h1 {
+  font-family: "Georgia", serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.subtext {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.8rem;
+}
+
+.info-box {
+  background: #fdf6dc;
+  border-radius: 0.5rem;
+  padding: 1.2rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.info-box p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.info-box span {
+  font-weight: 700;
+}
+
+.btn {
+  display: inline-block;
+  background: #f5d75a;
+  color: #000;
+  text-decoration: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+}

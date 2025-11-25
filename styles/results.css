@@ -1,0 +1,87 @@
+body {
+  background: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Center the card */
+.result-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.result-card {
+  background: #fff8df;
+  border: 2px solid #f7d774;
+  border-radius: 10px;
+  padding: 40px 50px;
+  text-align: center;
+  width: 550px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-card h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.result-card span {
+  color: #d28b1d;
+  font-weight: bold;
+}
+
+.result-card p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.result-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.retake {
+  background: #d3ac2b;
+  color: white;
+}
+
+.message {
+  background: #7b4c07;
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Submit button styling on quiz page */
+.submit-btn {
+  background: #d3ac2b;
+  padding: 12px 22px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.05);
+}

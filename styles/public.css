@@ -1,0 +1,49 @@
+body {
+  font-family: "Georgia", serif;
+  background: #fafafa;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.wrapper {
+  width: 80%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.public-card {
+  background: #f1f1f1;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.question {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.view-btn {
+  display: inline-block;
+  background: #eac645;
+  padding: 10px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  float: right;
+  margin-top: 20px;
+  color: black;
+  transition: 0.2s;
+}
+
+.view-btn:hover {
+  background: #f0d769;
+}
