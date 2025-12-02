@@ -7,7 +7,7 @@
         <nav class="nav-links">
             <a href="dashboard.php">Home</a>
             <a href="admin-library.php">Library</a>
-            <a href="admin-assessments.php">Assessments</a>
+            <a href="admin-assessment.php">Assessments</a>
         </nav>
     </header>
 </div>

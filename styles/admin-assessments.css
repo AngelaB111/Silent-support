@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: "Times New Roman", serif;
+  background: #f3f3f5;
+}
+
+.container {
+  width: 95%;
+  margin: 30px auto;
+  display: flex;
+  gap: 40px;
+}
+
+.left,
+.right {
+  background: white;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+.left {
+  width: 40%;
+}
+
+.right {
+  width: 60%;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.assessment-card {
+  background: #f5f5f8;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.edit-btn,
+.delete-btn,
+.add-new-btn,
+.add-question-btn,
+.add-option-btn,
+.publish-btn {
+  padding: 7px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.edit-btn {
+  background: #f1d264;
+}
+
+.delete-btn {
+  background: #d5d5d8;
+}
+
+.add-new-btn {
+  background: #f1d264;
+  width: 250px;
+  margin-top: 20px;
+}
+
+.add-question-btn {
+  background: #f1d264;
+  margin: 15px 0;
+}
+
+.publish-btn {
+  background: #d5d5d8;
+  margin-top: 25px;
+}
+
+.add-option-btn {
+  background: #f1d264;
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.question-box {
+  background: #f9f9fb;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.option-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.option-row input {
+  width: 50%;
+}
