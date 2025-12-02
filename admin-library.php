@@ -55,6 +55,10 @@ if (isset($_GET['edit'])) {
                     </div>
                 </div>
             <?php endwhile; ?>
+            <button onclick="location.href='admin-library.php'" class="add-btn" type="button">
+
+                Add new book</button>
+
         </div>
 
 
@@ -78,6 +82,10 @@ if (isset($_GET['edit'])) {
                     <label>Author:</label>
                     <input type="text" name="author" value="<?php echo htmlspecialchars($editBook['author']); ?>">
 
+                    <label>Category:</label>
+                    <input type="text" name="category" value="<?php echo htmlspecialchars($editBook['category']); ?>">
+
+
                     <label>Replace Cover Image (optional):</label>
                     <input type="file" name="cover_image" id="coverInput" accept="image/*">
 
@@ -97,13 +105,15 @@ if (isset($_GET['edit'])) {
 
                 <div class="cover-preview" id="coverPreview"></div>
 
-                <form action="add_book.php" method="POST" enctype="multipart/form-data">
+                <form action="add-book.php" method="POST" enctype="multipart/form-data">
 
                     <label>Title:</label>
                     <input type="text" name="title" required>
 
                     <label>Author:</label>
                     <input type="text" name="author">
+                    <label>Category:</label>
+                    <input type="text" name="category" required>
 
                     <label>Cover Image:</label>
                     <input type="file" name="cover_image" id="coverInput" required accept="image/*">
