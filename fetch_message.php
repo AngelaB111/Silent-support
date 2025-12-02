@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 require 'connect.php';
-// ob_clean();
+
 error_reporting(E_ERROR | E_PARSE);
 
 if (!isset($_GET['message_id'])) {

@@ -15,7 +15,6 @@ if ($message_id <= 0) {
 
 $db->begin_transaction();
 try {
-    // delete from public_posts and private_replies, then messages
     $d1 = $db->prepare("DELETE FROM public_posts WHERE message_id = ?");
     $d1->bind_param("i", $message_id);
     $d1->execute();

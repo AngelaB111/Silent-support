@@ -7,7 +7,7 @@ $book = $db->query("SELECT * FROM books WHERE book_id=$id")->fetch_assoc();
 
 $title = $_POST['title'];
 $author = $_POST['author'];
-$category = $_POST['category'];   // <-- NEW
+$category = $_POST['category'];   
 
 $cover = $book['cover_image'];
 $pdf = $book['pdf_file'];
