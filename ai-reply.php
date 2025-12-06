@@ -15,9 +15,6 @@ $validModel = 'gemini-2.5-flash';
 $url = "https://generativelanguage.googleapis.com/v1/models/$validModel:generateContent?key=" . $apiKey;
 
 
-
-
-
 $data = [
     "contents" => [
         [
