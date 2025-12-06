@@ -12,6 +12,7 @@ $assessment_id = $db->insert_id;
 $questions = $_POST['questions'];
 $option_texts = $_POST['option_texts'];
 $scores = $_POST['scores'];
+$source = $_POST['source'] ?? '';
 
 $optIndex = 0;
 
@@ -29,8 +30,8 @@ foreach ($questions as $qText) {
         $optText = $option_texts[$optIndex];
         $score = intval($scores[$optIndex]);
 
-        $db->query("INSERT INTO options (question_id, option_text, score)
-                    VALUES ($question_id, '$optText', $score)");
+        $db->query("INSERT INTO options (question_id, option_text, score, source)
+                    VALUES ($question_id, '$optText', $score, $source)");
 
         $optIndex++;
     }

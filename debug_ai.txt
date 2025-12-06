@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "It sounds like you've been carrying a really heavy load lately, and it takes a lot of courage to reach out and share what you're going through. Those feelings of being overwhelmed, struggling to focus, losing enjoyment in things, and wanting to hide can be incredibly tough to experience, and it's completely understandable that you're feeling anxious and unsure of where to start.\n\nPlease know that you are not alone in feeling this way. Many people experience similar struggles, and it's a sign of strength, not weakness, to acknowledge you need support.\n\nWhile I can't offer medical advice or a diagnosis, I can certainly offer some guidance on pathways to help and support. One of the most effective steps many people find helpful is connecting with a mental health professional. They are trained to listen without judgment, understand what you're experiencing, and help you explore strategies and resources tailored to your specific needs.\n\nHere are a few gentle suggestions on where you might begin looking for that guidance:\n\n1.  **Start with Your Primary Care Doctor:** Your family doctor or general practitioner can be a great first point of contact. They can listen to your concerns, rule out any physical health issues, and often provide referrals to mental health specialists in your area. They might also discuss initial support options.\n2.  **Explore Online Directories:** Websites like Psychology Today, Zocdoc, or the Anxiety & Depression Association of America (ADAA) often have search tools where you can find therapists, counselors, or psychiatrists based on your location, insurance, and specific concerns.\n3.  **Check Employee Assistance Programs (EAP):** If you're employed, your workplace might offer an EAP, which can provide a limited number of free therapy sessions or referrals to mental health services.\n4.  **Look into Community Mental Health Centers:** These centers often offer services on a sliding scale fee, making mental health support more accessible.\n5.  **University or College Resources:** If you are a student, your institution likely has a counseling center that can offer support.\n\nFinding the right professional can sometimes take a little time and effort, but it's worth it to find someone you feel comfortable and safe talking with. Please be gentle with yourself through this process. Taking this first step to acknowledge your feelings and seek support is a significant one. You deserve to feel better, and there are people who want to help you navigate this."
+            "text": "Hello there. It's good to connect with you. I'm here to listen if there's anything you'd like to share, or even just to chat."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 99,
-    "candidatesTokenCount": 497,
-    "totalTokenCount": 1423,
+    "promptTokenCount": 23,
+    "candidatesTokenCount": 36,
+    "totalTokenCount": 610,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 99
+        "tokenCount": 23
       }
     ],
-    "thoughtsTokenCount": 827
+    "thoughtsTokenCount": 551
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "1kszae7VEMCJnsEP5bmPiQM"
+  "responseId": "3Y00ady-LvufkdUPtuPAsAM"
 }

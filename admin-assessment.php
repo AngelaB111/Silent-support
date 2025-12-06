@@ -80,6 +80,10 @@ if (isset($_GET['edit'])) {
                 <label>Description :</label>
                 <textarea name="description"><?php echo $editMode ? $assessment['description'] : ""; ?></textarea>
 
+                <label>Source (optional):</label>
+                <input type="text" name="source" placeholder="ex: Based on the PHQ-9 Assessment"
+                    value="<?php echo $editMode ? $assessment['source'] ?? '' : ''; ?>">
+
                 <button type="button" class="add-question-btn" onclick="addQuestion()">+ Add Question</button>
 
                 <div id="questions-container"></div>
@@ -113,7 +117,11 @@ if (isset($_GET['edit'])) {
             qBox.className = "question-box";
 
             qBox.innerHTML = `
-        <h4>Q${questionCount} :</h4>
+    <div class="question-header">
+        <h4>Q${questionCount}</h4>
+        <button type="button" class="delete-question-btn" onclick="deleteQuestion(this)">✖</button>
+    </div>
+
 
         <input type="hidden" name="question_ids[]" value="${existing ? existing.question_id : ''}">
 
@@ -139,19 +147,34 @@ if (isset($_GET['edit'])) {
 
             let row = document.createElement("div");
             row.className = "option-row";
-
             row.innerHTML = `
-        <input type="hidden" name="option_ids[]" value="${existing ? existing.option_id : ''}">
-        
-        <input type="text" name="option_texts[]" placeholder="Option text"
-               value="${existing ? existing.option_text : ''}" required>
+    <input type="hidden" name="option_ids[]" value="${existing ? existing.option_id : ''}">
+    
+    <input type="text" name="option_texts[]" placeholder="Option text"
+           value="${existing ? existing.option_text : ''}" required>
 
-        <input type="number" name="scores[]" placeholder="Score"
-               value="${existing ? existing.score : ''}" required>
-    `;
+    <input type="number" name="scores[]" placeholder="Score"
+           value="${existing ? existing.score : ''}" required>
+
+    <button type="button" class="delete-option-btn" onclick="deleteOption(this)">✖</button>
+`;
+
 
             parent.appendChild(row);
         }
+
+        function deleteQuestion(button) {
+            if (confirm("Delete this question?")) {
+                button.closest(".question-box").remove();
+            }
+        }
+
+        function deleteOption(button) {
+            if (confirm("Delete this option?")) {
+                button.closest(".option-row").remove();
+            }
+        }
+
     </script>
 
 </body>

@@ -110,3 +110,25 @@ textarea {
 .option-row input {
   width: 50%;
 }
+.delete-question-btn,
+.delete-option-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  margin-left: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-question-btn:hover,
+.delete-option-btn:hover {
+  background: #b52a36;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
