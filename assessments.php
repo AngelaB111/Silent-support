@@ -16,12 +16,13 @@ $result = $db->query($sql);
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="styles/navbar.css?v=3" />
-  <link rel="stylesheet" href="styles/assessments.css?v=4" />
+  <link rel="stylesheet" href="styles/assessments.css?v=5" />
 </head>
 
 <body>
   <?php include("navbar.php") ?>
-  <div class="container">
+
+  <div class="assessment-container">
     <h1>Take a quick check</h1>
     <p class="subtitle">Discover early patterns for common mental problems</p>
     <?php
@@ -30,9 +31,9 @@ $result = $db->query($sql);
         echo '
           <div class="card">
             <h2 class="title">' . htmlspecialchars($row["title"]) . '</h2>
-              <p>' . htmlspecialchars($row["description"]) . '</p>
+              <p class="desc"> ' . htmlspecialchars($row["description"]) . '</p>
             <form action="take-assessment.php" method="GET">
-  <button type="submit" name="assessment_id" value="' . $row["assessment_id"] . '">Take Assessment</button>
+  <button type="submit" class="take-btn" name="assessment_id" value="' . $row["assessment_id"] . '">Take Assessment</button>
 </form>
           </div>
         ';

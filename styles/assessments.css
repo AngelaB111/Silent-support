@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.container {
+.assessment-container {
   max-width: 900px;
   margin: 3rem auto;
   text-align: center;
@@ -23,12 +23,11 @@ p.subtitle {
 }
 .card {
   background-color: #fdfdfd;
-  border-radius: 10px;
+  border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: start;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 .card h2 {
@@ -36,16 +35,21 @@ p.subtitle {
   margin: 0;
   font-family: "Times New Roman", serif;
 }
-.card button {
+.desc {
+  color: gray;
+  font-size: 1rem;
+}
+.take-btn {
   background-color: #f6d34c;
   border: none;
   padding: 0.6rem 1.2rem;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  order: 99;
 }
 .card button:hover {
-  background-color: #ffe680;
+  background-color: #8c8c8a;
 }
 .disclaimer {
   margin-top: 4rem;
@@ -54,6 +58,44 @@ p.subtitle {
   font-size: 0.9rem;
   line-height: 1.5;
 }
+.nav1 {
+  background-color: #ffffff;
+}
 .disclaimer b {
   color: red;
+}
+.take-assessment {
+  font-family: "Georgia", serif;
+  margin: 0;
+  padding: 6rem;
+  background-color: #ffffff;
+}
+.assessment-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.question-block {
+  margin-bottom: 2rem;
+}
+.question {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.option {
+  display: block;
+  margin: 0.3rem 0;
+}
+.submit-assessment {
+  display: block;
+  margin: 2rem auto;
+  background-color: #f6d34c;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.submit-assessment:hover {
+  background-color: #9c9c9c;
 }
