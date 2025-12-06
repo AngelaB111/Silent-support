@@ -109,7 +109,6 @@ textarea::placeholder {
   margin-bottom: 0.3rem;
 }
 
-/* Category */
 .category-section {
   text-align: left;
   margin-top: 1.5rem;
@@ -145,7 +144,7 @@ img {
   height: 1rem;
 }
 .modal1 {
-  display: none; /* hidden by default */
+  display: none; 
   position: fixed;
   top: 0;
   left: 0;
@@ -183,4 +182,74 @@ img {
 }
 .close-btn:hover {
   color: #000;
+}
+.modal1 {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.6); 
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh; /* limit max height to 80% of viewport */
+  overflow-y: auto; /* scroll if content exceeds max-height */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 20px 30px;
+  position: relative;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #ff4a4a;
+}
+
+#aiReplyBox {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-content {
+    padding: 15px 20px;
+  }
 }

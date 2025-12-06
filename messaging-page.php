@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Open+Sans:wght@300;400;600&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -66,7 +65,10 @@
                     <span><img src="icons/send.png"></span>
                     <span> submit message</span>
                 </button>
-
+                <button type="button" class="submit-btn" onclick="getAIReply()">
+                    <span><img src="icons/robot.png"></span>
+                    <span> get AI reply </span>
+                </button>
 
             </div>
         </form>
@@ -76,6 +78,12 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closePopup1()">&times;</span>
             <iframe src="success.php" frameborder="0"></iframe>
+        </div>
+    </div>
+    <div id="aiPopup" class="modal1" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAIPopup()">&times;</span>
+            <div id="aiReplyBox"></div>
         </div>
     </div>
 
@@ -121,6 +129,42 @@
     function closePopup1() {
         document.getElementById("popupModal1").style.display = "none";
     }
+
+    function getAIReply() {
+        const content = document.getElementById('message').value.trim();
+
+        if (!content) {
+            alert("Please write a message first.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("content", content);
+
+        fetch("ai-reply.php", {
+            method: "POST",
+            body: formData
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("aiReplyBox").innerText = data.reply;
+                    document.getElementById("aiPopup").style.display = "flex";
+                } else {
+                    document.getElementById("aiReplyBox").innerText = "AI Error: " + data.error;
+                    document.getElementById("aiPopup").style.display = "flex";
+                }
+            })
+            .catch(err => {
+                document.getElementById("aiReplyBox").innerText = "Network error." + err;
+                document.getElementById("aiPopup").style.display = "flex";
+            });
+    }
+
+    function closeAIPopup() {
+        document.getElementById("aiPopup").style.display = "none";
+    }
+
 </script>
 
 

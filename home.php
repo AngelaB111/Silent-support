@@ -10,14 +10,14 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
- 
+
   <link rel="stylesheet" href="styles/navbar.css?v=3" />
   <link rel="stylesheet" href="styles/style2.css">
 
 </head>
 
 <body>
-    <?php include("navbar.php") ?>
+  <?php include("navbar.php") ?>
 
   <main class="hero-section">
     <div class="hero-text">
@@ -130,5 +130,7 @@
 </body>
 
 </html>
-
+<script>
+  (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "oQ0ArFnpi0Wid0R4FeVdd"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+</script>
 <script src="scripts/script.js" defer></script>
