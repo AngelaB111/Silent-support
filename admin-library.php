@@ -22,8 +22,8 @@ if (isset($_GET['edit'])) {
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="styles/navbar.css?v=3">
-    <link rel="stylesheet" href="styles/books.css?v=3">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel=" stylesheet" href="styles/books.css">
 </head>
 
 <body>

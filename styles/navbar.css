@@ -10,12 +10,40 @@
   position: relative;
   z-index: 1;
 }
+
+.nav-left-group {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
 .logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
+header.navbar .back-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #f6d965;
+  color: #333;
+  border: 2px solid #f6d965;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+  background-color: #e6c85a;
+  border-color: #e6c85a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn:active {
+  transform: scale(0.98);
+}
 .logo .fa-circle {
   cursor: pointer;
 }
@@ -28,6 +56,17 @@
 .nav-links a {
   text-decoration: none;
   color: black;
+}
+
+.nav-links a:hover {
+  text-decoration: none;
+  color: #e6c85a;
+}
+.nav-links a.active {
+  text-decoration: none;
+  color: #e6c85a;
+  font-weight: 600;
+  border-bottom: 2px solid #e6c85a;
 }
 
 .modal {
@@ -64,16 +103,4 @@
 
 .close-btn:hover {
   color: #000;
-}
-header.navbar .back-btn {
-  padding: 8px 1rem;
-  background-color: #e5e5e5;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.back-btn:hover {
-  background-color: #d4d4d4 !important;
 }

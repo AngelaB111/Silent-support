@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "It takes so much strength to acknowledge how you're truly feeling, especially when you're running on such deep reserves. I hear how incredibly exhausted you are, not just physically, but that profound emotional and mental weariness that sleep doesn't seem to touch.\n\nIt sounds like you've been carrying an immense load for a very long time, constantly pushing yourself with work and family responsibilities, and it's completely understandable that you've reached a point where you feel you've hit a wall. That feeling of emptiness and deep, persistent weariness you're describing, where the exhaustion goes far beyond just being tired, is a very real and challenging experience.\n\nWhat you're describing—that sense of profound depletion, not knowing what it means beyond just feeling tired—is indeed how many people experience and talk about what's often referred to as burnout. It’s like your system is sending you a very clear signal that it needs a different kind of care and replenishment after such a long period of intense effort. Please know that it's okay to feel this way, and it's a completely understandable reaction to the incredible pressure you've been under."
+            "text": "Hello there. I'm so sorry to hear you've been feeling so down lately. That sounds like a really tough experience, and it's completely understandable to want to talk about it.\n\nPlease know that I'm here to listen with an open heart if you feel like sharing more, or if you just want a space to express what's on your mind. There's no pressure at all."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 116,
-    "candidatesTokenCount": 241,
-    "totalTokenCount": 828,
+    "promptTokenCount": 30,
+    "candidatesTokenCount": 85,
+    "totalTokenCount": 707,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 116
+        "tokenCount": 30
       }
     ],
-    "thoughtsTokenCount": 471
+    "thoughtsTokenCount": 592
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "0K41aaDaDdyD7M8P0OjeEA"
+  "responseId": "7Lc1abO4Ar6OxN8Ppbew8Aw"
 }

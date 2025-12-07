@@ -30,7 +30,7 @@ try {
     $d3->execute();
     $d3->close();
 
-    $conn->commit();
+    $db->commit();
     echo json_encode(['success' => true]);
     exit;
 } catch (Exception $e) {

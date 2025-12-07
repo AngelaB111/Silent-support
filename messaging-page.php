@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="styles/navbar.css?v=4" />
+    <link rel="stylesheet" href="styles/navbar.css?v=5" />
     <link rel="stylesheet" href="styles/style.css?v=5" />
 </head>
 
@@ -20,7 +20,7 @@
     <?php include("navbar.php") ?>
 
     <section class="message-section">
-        <h1>send an anonymous message</h1>
+        <h1>Send an Anonymous Message</h1>
         <p class="subtitle">share your thoughts in a safe space</p>
 
         <form class="message-form">
@@ -93,10 +93,14 @@
     <div id="aiPopup" class="modal1" style="display:none;">
         <div class="modal-content">
             <span class="close-btn" onclick="closeAIPopup()">&times;</span>
-            <h1 class="ai-title">Silent Support AI Response: </h1>
-            <p class="ai-description"> Thank you for sharing your message in this safe space. This automated response is
-                dedicated to offering immediate support and understanding.</p>
-
+            <div class="ai-container">
+                <h1 class="ai-title">
+                    <img class="ai-img" src="icons/ai-icon.png" alt="Robot Icon"> Silent Support AI Response:
+                </h1>
+                <p class="ai-description"> Thank you for sharing your message in this safe space. This automated
+                    response is
+                    dedicated to offering immediate support and understanding.</p>
+            </div>
             <div id="aiReplyBox"></div>
 
         </div>
@@ -106,5 +110,5 @@
 
 </html>
 
-<script src="scripts/messages.js?v=5" defer></script>
+<script src="scripts/messages.js" defer></script>
 <script src="scripts/script.js" defer></script>

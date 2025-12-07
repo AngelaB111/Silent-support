@@ -80,6 +80,8 @@
         document.getElementById("aiPopup").style.display = "none";
     }
 
+
+    //toggle button code 
 function submitMessage() {
     const selectedReplyType = document.querySelector('input[name="reply-type"]:checked').value;
     const messageInput = document.getElementById('message').value.trim();

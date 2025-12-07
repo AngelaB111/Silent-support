@@ -61,31 +61,35 @@ try {
             $ins->close();
         }
     } else {
-        $check = $db->prepare("SELECT reply_id FROM private_replies WHERE message_id = ? LIMIT 1");
+        // --- PRIVATE REPLIES BLOCK ---
+        $check = $db->prepare("SELECT privatePost_id FROM private_replies WHERE message_id = ? LIMIT 1");
         $check->bind_param("i", $message_id);
         $check->execute();
         $r = $check->get_result()->fetch_assoc();
         $check->close();
 
         if ($r) {
-            $upd = $db->prepare("UPDATE private_replies SET  reply_content = ? WHERE message_id = ?");
-            $upd->bind_param("isi", $reply, $message_id);
+            // FIX 1: Changed bind_param from "isi" to "si" 
+            $upd = $db->prepare("UPDATE private_replies SET reply_content = ? WHERE message_id = ?");
+            $upd->bind_param("si", $reply, $message_id);
             $upd->execute();
             $upd->close();
         } else {
-            $ins = $db->prepare("INSERT INTO private_replies (message_id, reply_content) VALUES (?, ?, ?)");
-            $ins->bind_param("iis", $message_id, $reply);
+            // FIX 2: Changed query to use 2 placeholders and bind_param to "is" 
+            $ins = $db->prepare("INSERT INTO private_replies (message_id, reply_content) VALUES (?, ?)");
+            $ins->bind_param("is", $message_id, $reply);
             $ins->execute();
             $ins->close();
         }
     }
 
-    // ✅ ADD THIS (update reply inside messages table)
+    // Update the 'reply' column in the main messages table
     $rmsg = $db->prepare("UPDATE messages SET reply = ? WHERE message_id = ?");
     $rmsg->bind_param("si", $reply, $message_id);
     $rmsg->execute();
     $rmsg->close();
 
+    // Set 'replied' status to 'yes'
     $mup = $db->prepare("UPDATE messages SET replied = 'yes' WHERE message_id = ?");
     $mup->bind_param("i", $message_id);
     $mup->execute();
