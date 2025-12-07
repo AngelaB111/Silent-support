@@ -13,7 +13,7 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles/navbar.css?v=4" />
-    <link rel="stylesheet" href="styles/style.css?v=3" />
+    <link rel="stylesheet" href="styles/style.css?v=5" />
 </head>
 
 <body>
@@ -61,13 +61,22 @@
                     </select>
                 </div>
 
-                <button type="button" class="submit-btn" onclick="openPopup1()">
-                    <span><img src="icons/send.png"></span>
-                    <span> submit message</span>
-                </button>
-                <button type="button" class="submit-btn" onclick="getAIReply()">
-                    <span><img src="icons/robot.png"></span>
-                    <span> get AI reply </span>
+                <div class="reply-toggle-group">
+                    <input type="radio" id="reply-human" name="reply-type" value="human" checked>
+                    <label for="reply-human">
+                        <img src="icons/send.png" alt="Send Icon">
+                        Get Therapist Reply
+                    </label>
+
+                    <input type="radio" id="reply-ai" name="reply-type" value="ai">
+                    <label for="reply-ai">
+                        <img src="icons/ai-icon.png" alt="Robot Icon">
+                        Get AI Reply
+                    </label>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="submitMessage()">
+                    <span>Submit Message</span>
                 </button>
 
             </div>
@@ -80,11 +89,16 @@
             <iframe src="success.php" frameborder="0"></iframe>
         </div>
     </div>
-    
+
     <div id="aiPopup" class="modal1" style="display:none;">
         <div class="modal-content">
             <span class="close-btn" onclick="closeAIPopup()">&times;</span>
+            <h1 class="ai-title">Silent Support AI Response: </h1>
+            <p class="ai-description"> Thank you for sharing your message in this safe space. This automated response is
+                dedicated to offering immediate support and understanding.</p>
+
             <div id="aiReplyBox"></div>
+
         </div>
     </div>
 
@@ -92,5 +106,5 @@
 
 </html>
 
-<script src="scripts/messages.js" defer></scrip>
+<script src="scripts/messages.js?v=5" defer></script>
 <script src="scripts/script.js" defer></script>

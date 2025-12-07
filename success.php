@@ -47,4 +47,4 @@ $access_code = $_GET['access_code'] ?? '-';
 </body>
 
 </html>
-<script src="script/script1.js" defer></script>
+<script src="scripts/script1.js" defer></script>

@@ -15,20 +15,25 @@ body {
 
 .wrapper {
   width: 80%;
-  max-width: 900px;
   margin: auto;
 }
 
 .public-card {
   background: #f1f1f1;
   border-radius: 8px;
-  padding: 25px;
+  padding: 1rem;
   margin-bottom: 25px;
+  height: 10rem;
 }
-
+.preview {
+  padding: 2rem;
+}
 .question {
+  background-color: #ffffff;
+  height: 5rem;
   font-size: 18px;
   line-height: 1.6;
+  border-radius: 8px;
 }
 
 .view-btn {
@@ -39,7 +44,7 @@ body {
   text-decoration: none;
   font-weight: bold;
   float: right;
-  margin-top: 20px;
+  margin-top: 0.8rem;
   color: black;
   transition: 0.2s;
 }

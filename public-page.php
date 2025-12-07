@@ -16,7 +16,7 @@ $result = $db->query($query);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="styles/navbar.css?v=3" />
-    <link rel="stylesheet" href="styles/public.css?v=3">
+    <link rel="stylesheet" href="styles/public.css?v=4">
 </head>
 
 <body>
@@ -31,8 +31,9 @@ $result = $db->query($query);
 
             <div class="public-card">
 
-                <div class="question">
+                <div class="question"><span class="preview">
                     <?php echo nl2br(htmlspecialchars($row['question'])); ?>
+                     </span>
                 </div>
 
                 <a href="publicview.php?post_id=<?php echo $row['post_id']; ?>" class="view-btn">

@@ -23,6 +23,7 @@ $questions_result = $db->query($questions_sql);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="styles/navbar.css?v=3" />
   <link rel="stylesheet" href="styles/assessments.css?v=5">
 
@@ -33,7 +34,7 @@ $questions_result = $db->query($questions_sql);
 <body>
 
   <div class="nav1">
-  <?php include("navbar.php") ?>
+    <?php include("navbar.php") ?>
   </div>
   <div class="take-assessment">
 

@@ -5,7 +5,6 @@ body {
   padding: 0;
 }
 
-/* Center the card */
 .result-container {
   display: flex;
   justify-content: center;

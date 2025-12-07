@@ -6,11 +6,12 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #f4f4f4;
   color: #222;
   line-height: 1.6;
 }
 
+/* --- Main Message Section --- */
 .message-section {
   text-align: center;
   padding: 3rem 1rem;
@@ -18,50 +19,139 @@ body {
 
 .message-section h1 {
   font-family: "Georgia", serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
+  color: #333;
   margin-bottom: 0.3rem;
 }
 
 .subtitle {
-  color: #888;
+  color: #777; /* Darker for better contrast */
   font-style: italic;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem; /* More space */
+  font-size: 1rem;
 }
 
+/* --- Form Card --- */
 .form-card {
-  background: #f5f5f5;
+  background: #ffffff; /* White background */
+  border: 1px solid #eee; /* Subtle border */
   max-width: 700px;
   margin: 0 auto;
-  padding: 2.5rem;
+  padding: 3rem; /* Increased padding */
   border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Stronger, softer shadow */
 }
 
 .form-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 1rem;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
 }
 
 .form-header .circle {
-  width: 15px;
-  height: 15px;
+  width: 18px; /* Slightly larger */
+  height: 18px;
   background: #f5d75a;
   border-radius: 50%;
+  box-shadow: 0 0 5px rgba(245, 215, 90, 0.8);
+}
+/* --- Reply Toggle Group Styling --- */
+.reply-toggle-group {
+  display: flex;
+  width: 100%;
+  margin-top: 2rem;
+  background: #e9e9e9; /* Light grey background for the container */
+  border-radius: 0.5rem;
+  padding: 3px;
+  gap: 3px;
+}
+
+.reply-toggle-group input[type="radio"] {
+  /* Hide the actual radio button */
+  display: none;
+}
+
+.reply-toggle-group label {
+  flex: 1;
+  text-align: center;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent; /* Default transparent background */
+}
+
+/* Style for the SELECTED option */
+.reply-toggle-group input[type="radio"]:checked + label {
+  background: #fff; /* White background for the selected tab */
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle lift */
+  font-weight: 700;
+}
+
+.reply-toggle-group label:hover {
+  color: #333; /* Darken text on hover */
+}
+
+.reply-toggle-group label img {
+  height: 1rem;
+  filter: grayscale(100%); /* Desaturate icons when not selected */
+  transition: filter 0.3s;
+}
+
+/* Color the icon when the option is selected */
+.reply-toggle-group input[type="radio"]:checked + label img {
+  filter: none;
+}
+
+/* --- Submit Button Adjustment --- */
+/* The final submit button should have a clear visual role */
+.submit-btn {
+  /* Keep existing submit-btn styles, but ensure it stands out */
+  background: #f5d75a;
+  color: #333;
+  margin-top: 1.5rem; /* Space below the toggle group */
+}
+.form-header h2 {
+  font-weight: 600;
+  color: #444;
+  font-size: 1.3rem;
+}
+
+.title1 {
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
 }
 
 textarea {
   width: 100%;
-  height: 150px;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  font-size: 0.95rem;
-  resize: none;
+  height: 180px; /* Taller textarea */
+  border: 1px solid #ddd;
+  border-radius: 0.75rem; /* Rounded corners */
+  padding: 1.25rem;
+  font-size: 1rem;
+  resize: vertical; /* Allow vertical resize */
   outline: none;
-  background: #fff;
+  background: #fcfcfc;
   color: #333;
+  transition: border-color 0.3s;
+}
+
+textarea:focus {
+  border-color: #f5d75a;
+  box-shadow: 0 0 0 3px rgba(245, 215, 90, 0.3);
 }
 
 textarea::placeholder {
@@ -71,118 +161,124 @@ textarea::placeholder {
 
 .checkbox-group {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start; /* Align text to top */
+  gap: 0.75rem;
   margin-top: 1.5rem;
   text-align: left;
 }
 
+.checkbox-group p {
+  line-height: 1.4;
+  color: #444;
+  margin: 0;
+}
+
 .checkbox-group input[type="checkbox"] {
-  width: 1rem;
-  height: 1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem; /* Align checkbox visually */
+  accent-color: #f5d75a; /* Color the checkbox when checked */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 .checkbox-group small {
-  color: #aaa;
-  margin-left: 1.7rem;
-  margin-top: 0.2rem;
-  font-size: 0.8rem;
+  display: block;
+  color: #999;
+  margin-top: 0.1rem;
+  font-size: 0.85rem;
 }
 
 /* Privacy box */
 .privacy-box {
-  background: #e2e3ff;
-  padding: 1rem;
+  background: #eef1ff; /* Lighter, softer blue */
+  padding: 1rem 1.5rem;
   margin-top: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   text-align: left;
   font-size: 0.9rem;
+  border-left: 5px solid #6c70f5; /* Highlight with a blue bar */
 }
 
-.privacy-box h3 {
-  color: #000;
+.privacy-box h4 {
+  color: #444;
   margin-bottom: 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .privacy-box p {
-  color: #2727ff;
+  color: #6c70f5; /* Consistent blue text */
   margin-bottom: 0.3rem;
 }
 
 .category-section {
   text-align: left;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+.category-section label {
+  display: block;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
 }
 
 select {
   width: 100%;
   padding: 0.8rem;
   border-radius: 0.5rem;
-  border: none;
+  border: 1px solid #ddd;
   background: #fff;
-  color: #666;
+  color: #555;
   font-size: 0.95rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.9L146.2%20210.8%205.4%2069.9z%22%2F%3E%3C%2Fsvg%3E"); /* Custom dropdown arrow */
+  background-repeat: no-repeat;
+  background-position: right 0.8rem top 50%;
+  background-size: 0.65em auto;
+  transition: border-color 0.3s;
+}
+
+select:focus {
+  border-color: #f5d75a;
+  outline: none;
 }
 
 .submit-btn {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   width: 100%;
   background: #f5d75a;
   border: none;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 0.8rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700; /* Bolder text */
+  color: #333; /* Darker text for contrast */
   cursor: pointer;
   transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:last-of-type {
+  margin-top: 1rem; /* Less margin between buttons */
 }
 
 .submit-btn:hover {
   background: #e6c94a;
+  box-shadow: 0 5px 15px rgba(245, 215, 90, 0.4);
 }
+.submit-btn span:first-child {
+  margin-right: 8px; /* Space between icon and text */
+}
+
 img {
-  height: 1rem;
-}
-.modal1 {
-  display: none; 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* 🔥 ensure it appears above everything */
+  height: 1.1rem; /* Slightly larger icon */
 }
 
-.modal-content {
-  background: white;
-  border-radius: 10px;
-  width: 50%;
-  height: 70%;
-  position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
-
-.modal-content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.close-btn {
-  cursor: pointer;
-  font-size: 24px;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: #444;
-}
-.close-btn:hover {
-  color: #000;
-}
+/* --- Modal Styles (Unchanged but included for context) --- */
 .modal1 {
   display: none;
   position: fixed;
@@ -191,52 +287,73 @@ img {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; 
-  background-color: rgba(0, 0, 0, 0.6); 
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
-/* Modal content box */
 .modal-content {
   background-color: #fff;
   border-radius: 12px;
   width: 90%;
   max-width: 600px;
-  max-height: 80vh; /* limit max height to 80% of viewport */
-  overflow-y: auto; /* scroll if content exceeds max-height */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  padding: 20px 30px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  padding: 30px 30px 20px; /* Adjusted padding */
   position: relative;
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Close button */
+/* Specific styling for the AI Popup */
+#aiPopup .modal-content {
+  background: #f7f7f7; /* Distinct background for AI reply */
+  border: 1px solid #ddd;
+  padding-top: 40px; /* More space for the close button */
+}
+
 .close-btn {
   position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
+  top: 10px; /* Adjusted position */
+  right: 15px; /* Adjusted position */
+  font-size: 30px; /* Larger close button */
+  font-weight: 300;
+  color: #666;
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .close-btn:hover {
-  color: #ff4a4a;
+  color: #444;
 }
 
+/* 🔥 The SCROLL FIX is primarily here 🔥 */
 #aiReplyBox {
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7; /* Increased line height for readability */
   color: #333;
   white-space: pre-wrap;
   word-wrap: break-word;
+  /* Ensure the content box itself scrolls if the text is too long */
+  max-height: calc(80vh - 80px); /* Limit the height of the reply content */
+  overflow-y: auto; /* Enable scrolling for the content */
+  padding-right: 15px; /* Add padding for the scrollbar */
 }
-
+#aiReplyBox h2,
+#aiReplyBox h3 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #333;
+}
+.ai-title {
+  font-size: small;
+}
+.ai-description {
+  font-size: smaller;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -248,8 +365,20 @@ img {
   }
 }
 
+@media (max-width: 768px) {
+  .form-card {
+    padding: 2rem;
+  }
+}
+
 @media (max-width: 500px) {
   .modal-content {
     padding: 15px 20px;
+  }
+  .close-btn {
+    font-size: 24px;
+  }
+  .form-card {
+    padding: 1.5rem;
   }
 }
