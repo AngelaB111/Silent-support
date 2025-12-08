@@ -22,6 +22,12 @@ if (isset($_GET['edit'])) {
         $questions[] = $q;
     }
 }
+$results = [];
+if ($editMode) {
+    $resultsQuery = $db->query("SELECT * FROM assessment_results WHERE assessment_id=$id");
+    $results = $resultsQuery->fetch_all(MYSQLI_ASSOC);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +39,7 @@ if (isset($_GET['edit'])) {
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/admin-assessments.css?v=3">
+    <link rel="stylesheet" href="styles/admin-assessments.css?v=5">
 </head>
 
 <body>
@@ -66,7 +72,6 @@ if (isset($_GET['edit'])) {
             </button>
         </div>
 
-
         <div class="right">
             <h3><?php echo $editMode ? "Edit Assessment" : "Assessment"; ?></h3>
 
@@ -85,96 +90,40 @@ if (isset($_GET['edit'])) {
                     value="<?php echo $editMode ? $assessment['source'] ?? '' : ''; ?>">
 
                 <button type="button" class="add-question-btn" onclick="addQuestion()">+ Add Question</button>
-
                 <div id="questions-container"></div>
+
+                <hr style="margin: 20px 0;">
+                <label>Assessment Results:</label>
+                <div id="results-container"></div>
+                <button type="button" class="add-result-btn" onclick="addResultRow()">+ Add Result Range</button>
 
                 <button type="submit" class="publish-btn">
                     <?php echo $editMode ? "Update Assessment" : "Save & Publish"; ?>
                 </button>
+
             </form>
         </div>
 
     </div>
-
     <script>
-        let questionCount = 0;
 
-        <?php if ($editMode): ?>
-            let existingQuestions = <?php echo json_encode($questions); ?>;
-        <?php else: ?>
-            let existingQuestions = [];
-        <?php endif; ?>
-
-        window.onload = function () {
-            existingQuestions.forEach(q => addQuestion(q));
-        };
-
-
-        function addQuestion(existing = null) {
-            questionCount++;
-
-            let qBox = document.createElement("div");
-            qBox.className = "question-box";
-
-            qBox.innerHTML = `
-    <div class="question-header">
-        <h4>Q${questionCount}</h4>
-        <button type="button" class="delete-question-btn" onclick="deleteQuestion(this)">✖</button>
-    </div>
-
-
-        <input type="hidden" name="question_ids[]" value="${existing ? existing.question_id : ''}">
-
-        <input type="text" name="questions[]" placeholder="Question text"
-        value="${existing ? existing.question_text : ''}" required>
-
-        <div class="options">
-            <label>Options :</label>
-            <button type="button" class="add-option-btn" onclick="addOption(this)">+ Add Option</button>
-        </div>
-    `;
-
-            document.getElementById("questions-container").appendChild(qBox);
-
-            if (existing && existing.options) {
-                existing.options.forEach(opt => addOption(qBox.querySelector(".add-option-btn"), opt));
-            }
+        window.AssessmentData = <?php
+        if ($editMode) {
+            echo json_encode($questions);
+        } else {
+            echo '[]';
         }
-
-
-        function addOption(button, existing = null) {
-            let parent = button.parentElement;
-
-            let row = document.createElement("div");
-            row.className = "option-row";
-            row.innerHTML = `
-    <input type="hidden" name="option_ids[]" value="${existing ? existing.option_id : ''}">
-    
-    <input type="text" name="option_texts[]" placeholder="Option text"
-           value="${existing ? existing.option_text : ''}" required>
-
-    <input type="number" name="scores[]" placeholder="Score"
-           value="${existing ? existing.score : ''}" required>
-
-    <button type="button" class="delete-option-btn" onclick="deleteOption(this)">✖</button>
-`;
-
-
-            parent.appendChild(row);
+        ?>;
+        window.IsEditMode = <?php echo $editMode ? 'true' : 'false'; ?>;
+        window.ResultData = <?php
+        if ($editMode) {
+            echo json_encode($results);
+        } else {
+            echo '[]';
         }
-
-        function deleteQuestion(button) {
-            if (confirm("Delete this question?")) {
-                button.closest(".question-box").remove();
-            }
-        }
-
-        function deleteOption(button) {
-            if (confirm("Delete this option?")) {
-                button.closest(".option-row").remove();
-            }
-        }
-
+        ?>;
+    </script>
+    <script src="admin-assessment.js" defer>
     </script>
 
 </body>

@@ -47,7 +47,8 @@ h3 {
 .add-new-btn,
 .add-question-btn,
 .add-option-btn,
-.publish-btn {
+.publish-btn,
+.add-result-btn {
   padding: 7px 20px;
   border-radius: 4px;
   border: none;
@@ -131,4 +132,63 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.add-result-btn {
+  border: none;
+  background: #f1d264;
+  margin: 15px 0;
+}
+
+.result-row {
+  background: #fcfcfc;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.result-row hr {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid #d5d5d8;
+}
+
+.score-range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.score-range-inputs label {
+  font-weight: bold;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+.score-range-inputs input[type="number"] {
+  width: 80px;
+  text-align: center;
+  margin-bottom: 0; /* Remove margin-bottom inherited from general input styles */
+}
+
+.result-row textarea {
+  min-height: 80px;
+}
+
+.delete-result-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  display: block;
+}
+
+.delete-result-btn:hover {
+  background: #b52a36;
 }

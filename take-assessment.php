@@ -6,11 +6,12 @@ if (!isset($_GET['assessment_id'])) {
 }
 $assessment_id = intval($_GET['assessment_id']);
 
-$assessment_sql = "SELECT title FROM assessments WHERE assessment_id = $assessment_id";
+$assessment_sql = "SELECT title, source FROM assessments WHERE assessment_id = $assessment_id";
 $assessment_result = $db->query($assessment_sql);
 $assessment = $assessment_result->fetch_assoc();
 $questions_sql = "SELECT * FROM questions WHERE assessment_id = $assessment_id";
 
+$Source = $assessment['source'] ?? '';
 $questions_result = $db->query($questions_sql);
 ?>
 
@@ -73,6 +74,11 @@ $questions_result = $db->query($questions_sql);
 
       <button type="submit" class="submit-assessment">Submit</button>
     </form>
+    <?php if (!empty($Source)): ?>
+      <p class="assessment-source">
+        <strong>Source:</strong> <?php echo htmlspecialchars($Source); ?>
+      </p>
+    <?php endif; ?>
   </div>
 
 </body>

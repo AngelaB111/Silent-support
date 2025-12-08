@@ -5,9 +5,10 @@ $id = intval($_GET['id']);
 
 $title = $_POST['title'];
 $description = $_POST['description'];
+$source = $_POST['source'];
 
 $db->query("UPDATE assessments 
-            SET title='$title', description='$description'
+            SET title='$title', description='$description', source='$source'
             WHERE assessment_id=$id");
 
 $questions = $_POST['questions'];
@@ -51,6 +52,31 @@ foreach ($questions as $index => $qText) {
         }
 
         $optIndex++;
+    }
+}
+$result_ids = $_POST['result_ids'];
+$min_scores = $_POST['min_scores'];
+$max_scores = $_POST['max_scores'];
+$interpretations = $_POST['interpretations'];
+$suggestions = $_POST['suggestions'];
+
+foreach ($result_ids as $index => $resultID) {
+
+    $resultID = intval($result_ids[$index]);
+    $minScore = intval($min_scores[$index]);
+    $maxScore = intval($max_scores[$index]);
+    $interpretation = $interpretations[$index];
+    $suggestion = $suggestions[$index];
+
+    if ($resultID) {
+        $db->query("UPDATE assessment_results
+                    SET min_score=$minScore, max_score=$maxScore, 
+                        interpretation='$interpretation', suggestion='$suggestion'
+                    WHERE result_id=$resultID");
+    } else {
+        $db->query("INSERT INTO assessment_results 
+                    (assessment_id, min_score, max_score, interpretation, suggestion)
+                    VALUES ($id, $minScore, $maxScore, '$interpretation', '$suggestion')");
     }
 }
 
