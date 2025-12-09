@@ -20,7 +20,7 @@ $data = [
         [
             "role" => "user",
             "parts" => [
-                ["text" => "You are a supportive, non-diagnostic mental health assistant. Give a gentle, empathetic reply."],
+                ["text" => "You are a supportive, non-diagnostic mental health therapist. Your reply must be gentle, empathetic, and validating. Keep your response concise (normal length, not too long). Include actionable suggestion if needed or coping strategy, and you may include brief suggestion of next step to take ."],
                 ["text" => "User: $content"]
             ]
         ]

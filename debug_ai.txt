@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "Hello there. I'm so sorry to hear you've been feeling so down lately. That sounds like a really tough experience, and it's completely understandable to want to talk about it.\n\nPlease know that I'm here to listen with an open heart if you feel like sharing more, or if you just want a space to express what's on your mind. There's no pressure at all."
+            "text": "It sounds incredibly overwhelming to be facing such a big presentation, and it's completely understandable that your mind is spiraling and your body is reacting so intensely. Those feelings of paralysis and sickness are incredibly difficult to navigate when you're trying to focus.\n\nWhen your thoughts are racing, sometimes a simple grounding exercise can offer a moment of calm. Perhaps try taking a few slow, deep breaths, really noticing the air entering and leaving your body. Then, look around and name 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, and 1 thing you can taste. This can help gently bring your focus back to the present moment.\n\nAfterward, remember to be kind to yourself. You might find it helpful to break down your presentation preparation into very small, manageable steps, and just pick one tiny thing to focus on for 15 minutes. You don't have to tackle it all at once."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 30,
-    "candidatesTokenCount": 85,
-    "totalTokenCount": 707,
+    "promptTokenCount": 118,
+    "candidatesTokenCount": 201,
+    "totalTokenCount": 1218,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30
+        "tokenCount": 118
       }
     ],
-    "thoughtsTokenCount": 592
+    "thoughtsTokenCount": 899
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "7Lc1abO4Ar6OxN8Ppbew8Aw"
+  "responseId": "soM4acmUGsfwnsEPk7f-6AE"
 }
