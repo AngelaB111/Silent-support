@@ -1,121 +1,159 @@
-<?php
-include "connect.php";
+let questionCount = 0;
+let resultsCount = 0;
+const existingQuestions = window.AssessmentData || [];
+const existingResults = window.ResultData || [];
 
-$assessments = $db->query("SELECT * FROM assessments ORDER BY assessment_id DESC");
+window.onload = function () {
+    if (existingQuestions.length > 0) {
+        existingQuestions.forEach(q => addQuestion(q));
+    } else {
+        addQuestion();
+    }
+    if (existingResults.length > 0) {
+        existingResults.forEach(r => addResultRow(r));
+    } else {
+        addResultRow();
+    }
+};
 
-$editMode = false;
-
-if (isset($_GET['edit'])) {
-    $editMode = true;
-
-    $id = intval($_GET['edit']);
-
-    $assessment = $db->query("SELECT * FROM assessments WHERE assessment_id=$id")->fetch_assoc();
-
-    $questionsQuery = $db->query("SELECT * FROM questions WHERE assessment_id=$id");
-    $questions = [];
-
-    while ($q = $questionsQuery->fetch_assoc()) {
-
-        $optQ = $db->query("SELECT * FROM options WHERE question_id=" . $q['question_id']);
-        $q['options'] = $optQ->fetch_all(MYSQLI_ASSOC);
-        $questions[] = $q;
+function deleteFromDatabase(id, type) {
+    if (!id) {
+        return Promise.resolve(); 
     }
 
-    // Fetch existing results/interpretations
-    $resultsQuery = $db->query("SELECT * FROM assessment_results WHERE assessment_id=$id ORDER BY min_score ASC");
-    $results = $resultsQuery->fetch_all(MYSQLI_ASSOC);
+    const url = 'delete_item.php'; 
+    const data = new URLSearchParams();
+    data.append('id', id);
+    data.append('type', type); 
+
+    return fetch(url, {
+        method: 'POST',
+        body: data
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            console.log(`${type} with ID ${id} deleted successfully from DB.`);
+        } else {
+            alert(`Error deleting ${type}: ${data.message || 'Unknown error'}`);
+            throw new Error(data.message || 'Database deletion failed');
+        }
+    })
+    .catch(error => {
+        console.error('AJAX deletion error:', error);
+        alert(`Failed to delete ${type} from the database. Please try again.`);
+        throw error; 
+    });
 }
-?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Assessments</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/admin-assessments.css?v=3">
-</head>
-
-<body>
-
-    <?php include("therapist_navbar.php"); ?>
-    <div class="container">
-
-        <div class="left">
-            <h3>Assessments :</h3>
-
-            <?php while ($a = $assessments->fetch_assoc()): ?>
-                <div class="assessment-card">
-                    <strong>#<?php echo $a['title']; ?></strong>
-
-                    <div class="actions">
-                        <a href="admin-assessment.php?edit=<?php echo $a['assessment_id']; ?>">
-                            <button class="edit-btn">Edit</button>
-                        </a>
-
-                        <a href="delete_assessment.php?id=<?php echo $a['assessment_id']; ?>"
-                            onclick="return confirm('Delete this assessment?');">
-                            <button class="delete-btn">Delete</button>
-                        </a>
-                    </div>
-                </div>
-            <?php endwhile; ?>
-
-            <button class="add-new-btn" onclick="window.location='admin-assessment.php'">
-                + Add New Assessment
-            </button>
-        </div>
 
 
-        <div class="right">
-            <h3><?php echo $editMode ? "Edit Assessment" : "Assessment"; ?></h3>
+function addQuestion(existing = null) {
+    questionCount++;
 
-            <form
-                action="<?php echo $editMode ? "edit_assessment.php?id=" . $assessment['assessment_id'] : "add_assessment.php"; ?>"
-                method="POST">
+    let qBox = document.createElement("div");
+    qBox.className = "question-box";
 
-                <label>Title :</label>
-                <input type="text" name="title" required value="<?php echo $editMode ? $assessment['title'] : ""; ?>">
-
-                <label>Description :</label>
-                <textarea name="description"><?php echo $editMode ? $assessment['description'] : ""; ?></textarea>
-
-                <label>Source (optional):</label>
-                <input type="text" name="source" placeholder="ex: Based on the PHQ-9 Assessment"
-                    value="<?php echo $editMode ? $assessment['source'] ?? '' : ''; ?>">
-
-                <button type="button" class="add-question-btn" onclick="addQuestion()">+ Add Question</button>
-                <div id="questions-container"></div>
-
-                <hr style="margin: 20px 0;">
-                <label>Assessment Results/Interpretation :</label>
-                <div id="results-container"></div>
-                <button type="button" class="add-result-btn" onclick="addResultRow()">+ Add Result Range</button>
-                <button type="submit" class="publish-btn">
-                    <?php echo $editMode ? "Update Assessment" : "Save & Publish"; ?>
-                </button>
-
-            </form>
-        </div>
-
+    const questionId = existing ? existing.question_id : ''; 
+    qBox.innerHTML = `
+    <div class="question-header">
+        <h4>Q${questionCount}</h4>
+        <button type="button" class="delete-question-btn" onclick="deleteQuestion(this, '${questionId}')">✖</button>
     </div>
 
-    <script>
-        <?php if ($editMode): ?>
-            let existingQuestions = <?php echo json_encode($questions); ?>;
-            let existingResults = <?php echo json_encode($results); ?>;
-        <?php else: ?>
-            let existingQuestions = [];
-            let existingResults = [];
-        <?php endif; ?>
-    </script>
+    <input type="hidden" name="question_ids[]" value="${questionId}">
 
-    <script src="admin-assessment.js"></script>
+    <input type="text" name="questions[]" placeholder="Question text"
+    value="${existing ? existing.question_text : ''}" required>
 
-</body>
+    <div class="options">
+        <label>Options :</label>
+        <button type="button" class="add-option-btn" onclick="addOption(this)">+ Add Option</button>
+    </div>
+    `;
 
-</html>
+    document.getElementById("questions-container").appendChild(qBox);
+
+    if (existing && existing.options && existing.options.length > 0) {
+        existing.options.forEach(opt => addOption(qBox.querySelector(".add-option-btn"), opt));
+    } else if (!existing) {
+        let addButton = qBox.querySelector(".add-option-btn");
+        addOption(addButton);
+        addOption(addButton);
+    }
+}
+
+
+function deleteQuestion(button, questionId) {
+    if (confirm("Delete this question?")) {
+        deleteFromDatabase(questionId, 'question')
+            .then(() => {
+                button.closest(".question-box").remove();
+            })
+            .catch(() => {
+            });
+    }
+}
+
+function deleteOption(button) {
+    if (confirm("Delete this option?")) {
+        button.closest(".option-row").remove();
+    }
+}
+
+
+// --- Result Functions ---
+
+function addResultRow(existing = null) {
+    resultsCount++;
+
+    let rBox = document.createElement("div");
+    rBox.className = "result-row";
+    
+    // Extract the result ID for deletion
+    const resultId = existing ? existing.result_id : ''; 
+
+    rBox.innerHTML = `
+    <input type="hidden" name="result_ids[]" value="${resultId}">
+
+    <div class="score-range-inputs">
+        <label>Score Range:</label>
+        <input type="number" name="min_scores[]" placeholder="Min Score" style="width: 80px;"
+            value="${existing ? existing.min_score : ''}" required>
+        -
+        <input type="number" name="max_scores[]" placeholder="Max Score" style="width: 80px;"
+            value="${existing ? existing.max_score : ''}" required>
+    </div>
+
+    <label>Interpretation (e.g., 'Severe'):</label>
+    <input type="text" name="interpretations[]" placeholder="Interpretation"
+        value="${existing ? existing.interpretation : ''}" required>
+
+    <label>Suggestion/Recommendation:</label>
+    <textarea name="suggestions[]" rows="2" placeholder="Suggestion for this score range..."
+        required>${existing ? existing.suggestion : ''}</textarea>
+
+    <button type="button" class="delete-result-btn" onclick="deleteResultRow(this, '${resultId}')">Delete Range</button>
+    <hr style="border-top: 1px solid #eee;">
+`;
+
+    document.getElementById("results-container").appendChild(rBox);
+}
+
+function deleteResultRow(button, resultId) {
+    if (confirm("Delete this result range?")) {
+        // 1. Try to delete from the database if an ID exists
+        deleteFromDatabase(resultId, 'result')
+            .then(() => {
+                // 2. If successful (or no ID exists), remove from the DOM
+                button.closest(".result-row").remove();
+            })
+            .catch(() => {
+                // If deletion fails, do nothing
+            });
+    }
+}

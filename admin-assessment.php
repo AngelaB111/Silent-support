@@ -20,6 +20,11 @@ if (isset($_GET['edit'])) {
         $optQ = $db->query("SELECT * FROM options WHERE question_id=" . $q['question_id']);
         $q['options'] = $optQ->fetch_all(MYSQLI_ASSOC);
         $questions[] = $q;
+    } // === TEMPORARY DEBUG CHECK ===
+    if ($editMode && !empty($questions)) {
+        echo "";
+        echo "";
+        echo "";
     }
 }
 $results = [];
@@ -123,7 +128,7 @@ if ($editMode) {
         }
         ?>;
     </script>
-    <script src="admin-assessment.js" defer>
+    <script src="admin-assessment.js?v=6" defer>
     </script>
 
 </body>
