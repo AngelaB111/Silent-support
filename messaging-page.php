@@ -49,18 +49,6 @@
                         and Access code (you’ll receive them after submission)</p>
                 </div>
 
-                <div class="category-section">
-                    <label for="category"><em>category:</em></label>
-                    <select id="category">
-                        <option disabled selected>choose category that best describes your message</option>
-                        <option>Stress</option>
-                        <option>Anxiety</option>
-                        <option>Relationships</option>
-                        <option>Grief</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-
                 <div class="reply-toggle-group">
                     <input type="radio" id="reply-human" name="reply-type" value="human" checked>
                     <label for="reply-human">

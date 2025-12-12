@@ -1,4 +1,46 @@
 let selectedId = null;
+const dialogBackdrop = document.getElementById('custom-dialog-backdrop');
+const dialogContent = document.querySelector('#custom-dialog-backdrop .dialog-content'); 
+const dialogTitle = document.getElementById('dialog-title');
+const dialogMessage = document.getElementById('dialog-message');
+const dialogOkBtn = document.getElementById('dialog-ok-btn');
+const dialogCancelBtn = document.getElementById('dialog-cancel-btn');
+
+function showAlert(message, title = 'Alert', type = 'info') {
+    return new Promise(resolve => {
+        dialogTitle.innerText = title;
+        dialogMessage.innerText = message;
+        dialogContent.className = 'dialog-content ' + type; 
+        dialogCancelBtn.style.display = 'none';
+        dialogOkBtn.innerText = 'OK'; 
+        dialogBackdrop.style.display = 'flex';
+        dialogOkBtn.onclick = () => {
+            dialogBackdrop.style.display = 'none';
+            resolve(); 
+        };
+    });
+}
+
+
+function showConfirm(message, title = 'Confirmation') {
+    return new Promise(resolve => {
+        dialogTitle.innerText = title;
+        dialogMessage.innerText = message;
+        dialogContent.className = 'dialog-content warning'; 
+        dialogCancelBtn.style.display = 'inline-block';
+        dialogOkBtn.innerText = 'Confirm'; 
+        dialogBackdrop.style.display = 'flex';
+        dialogOkBtn.onclick = () => {
+            dialogBackdrop.style.display = 'none';
+            resolve(true); 
+        };
+
+        dialogCancelBtn.onclick = () => {
+            dialogBackdrop.style.display = 'none';
+            resolve(false); 
+        };
+    });
+}
 
 function selectMessage(id, clickedElem) {
   selectedId = id;
@@ -11,15 +53,13 @@ function selectMessage(id, clickedElem) {
     .then(data => {
       const emptyState = document.getElementById('emptyState');
       const messageDetail = document.getElementById('messageDetail');
-
       emptyState.style.display = 'none';
       messageDetail.style.display = 'flex';
-
+      
       document.getElementById('detailMessageId').innerText = data.message_id;
-      document.getElementById('editCategory').value = data.category;
       document.getElementById('detailContent').innerText = data.content;
       document.getElementById('replyText').value = data.reply ?? '';
-
+      
       document.getElementById('detailPublic').innerText = data.public === 'yes' ? 'Public' : 'Private';
       document.getElementById('detailPublic').style.display = 'inline';
 
@@ -29,40 +69,52 @@ function selectMessage(id, clickedElem) {
       document.getElementById('detailReplied').innerText = data.replied === 'yes' ? 'Answered' : 'Pending';
       document.getElementById('detailReplied').style.display = 'inline';
     })
-    .catch(err => alert('Could not load message: ' + err.message));
+    .catch(err => showAlert('Could not load message: ' + err.message, 'Network Error', 'error')); 
 }
 
-function saveReply() {
-  if (!selectedId) return alert('Select a message first.');
+async function saveReply() {
+  if (!selectedId) {
+    return showAlert('Select a message first.', 'Action Required', 'info'); 
+  }
 
   const reply = document.getElementById('replyText').value.trim();
-  const category = document.getElementById('editCategory').value.trim();
 
-  if (!reply.length && !confirm('Reply is empty. Mark as answered anyway?')) return;
+  if (!reply.length) {
+    const confirmation = await showConfirm('Reply is empty. Mark as answered anyway?', 'Confirm Empty Reply');
+    if (!confirmation) {
+      return; 
+    }
+  }
 
   const form = new FormData();
   form.append('message_id', selectedId);
-  form.append('category', category);
   form.append('reply', reply);
 
   fetch('save_reply.php', { method: 'POST', body: form })
     .then(r => r.json())
     .then(res => {
       if (res.success) {
-        alert('Reply saved.');
+        showAlert('Reply saved.', 'Success', 'success'); 
+        
         document.getElementById('detailReplied').innerText = 'Answered';
         const card = document.querySelector(`.message-card[data-id="${selectedId}"] .status`);
         if (card) { card.className = 'status yes'; card.innerText = 'Answered'; }
       } else {
-        alert('Save failed: ' + (res.error || 'unknown'));
+        showAlert('Save failed: ' + (res.error || 'unknown'), 'Save Error', 'error'); 
       }
     })
-    .catch(e => alert('Network error: ' + e.message));
+    .catch(e => showAlert('Network error: ' + e.message, 'Network Error', 'error')); 
 }
 
-function deleteMessage() {
-  if (!selectedId) return alert('Select a message first.');
-  if (!confirm('Delete this message permanently?')) return;
+async function deleteMessage() {
+  if (!selectedId) {
+    return showAlert('Select a message first.', 'Action Required', 'info'); 
+  }
+  
+  const confirmation = await showConfirm('Delete this message permanently?', 'Confirm Deletion');
+  if (!confirmation) {
+    return; 
+  }
 
   fetch('delete_message.php', {
     method: 'POST',
@@ -72,7 +124,8 @@ function deleteMessage() {
     .then(r => r.json())
     .then(res => {
       if (res.success) {
-        alert('Message deleted.');
+        showAlert('Message deleted.', 'Success', 'success'); 
+        
         const card = document.querySelector(`.message-card[data-id="${selectedId}"]`);
         if (card) card.remove();
 
@@ -80,8 +133,8 @@ function deleteMessage() {
         document.getElementById('emptyState').style.display = 'flex';
         selectedId = null;
       } else {
-        alert('Delete failed: ' + (res.error || 'unknown'));
+        showAlert('Delete failed: ' + (res.error || 'unknown'), 'Delete Error', 'error'); 
       }
     })
-    .catch(e => alert('Network error: ' + e.message));
+    .catch(e => showAlert('Network error: ' + e.message, 'Network Error', 'error')); 
 }

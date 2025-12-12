@@ -205,18 +205,6 @@ textarea::placeholder {
   margin-bottom: 0.3rem;
 }
 
-.category-section {
-  text-align: left;
-  margin-top: 2rem;
-}
-
-.category-section label {
-  display: block;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 0.5rem;
-}
-
 select {
   width: 100%;
   padding: 0.8rem;

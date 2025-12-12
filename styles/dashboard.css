@@ -6,6 +6,7 @@
   --primary: #2563eb;
   --danger: #e11d48;
   --urgent: #ff6666;
+  --yel: #f6d965;
 }
 
 body {
@@ -183,14 +184,6 @@ body {
   color: #6b7280;
   font-size: 13px;
 }
-
-#editCategory {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #e6e6e6;
-}
-
 .detail-content {
   background: #fbfbfb;
   padding: 12px;
@@ -224,32 +217,11 @@ body {
 }
 
 #deleteBtn {
-  background-color: var(--bg);
+  background-color: var(--danger);
 }
 
 #saveReplyBtn {
   background-color: #f6d965;
-}
-
-.category-select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #e6e6e6;
-  background-color: var(--card);
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23444'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px;
-  cursor: pointer;
-  font-size: 14px;
-  color: var(--accent);
-}
-
-.category-select:focus {
-  outline: 2px solid var(--primary);
-  border-color: var(--primary);
 }
 
 .detail-actions button.btn {
@@ -274,15 +246,13 @@ body {
 }
 
 #saveReplyBtn:hover {
-  background-color: #e6c85a;
-  border-color: #e6c85a;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 8px rgba(96, 95, 33, 0.08);
 }
 
 #deleteBtn {
-  background-color: transparent;
-  color: var(--danger);
-  border: 1px solid var(--danger);
+  background-color: var(--danger);
+  color: white;
+  border: none;
 }
 
 #deleteBtn:hover {
@@ -292,13 +262,102 @@ body {
 }
 
 #replyText:focus {
-  border-color: var(--primary);
+  border-color: var(--yel);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(235, 232, 37, 0.1);
 }
 
 .deleteImg,
 .sendImg {
   height: 1rem;
   width: 1rem;
+}
+
+.dialog-backdrop {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Slightly lighter backdrop */
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif; /* Ensure it matches body font */
+}
+
+.dialog-content {
+  background-color: var(--card);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  width: 380px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+  /* Default border style (e.g., info/confirmation) */
+  border-top: 6px solid var(--primary);
+}
+
+.dialog-content h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.dialog-content p {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Specific Styles for various Alerts (JS adds these classes) */
+.dialog-content.error {
+  border-top-color: var(--danger); /* Uses the red danger variable */
+}
+
+.dialog-content.success {
+  border-top-color: #2ecc71; /* Green color for success */
+}
+
+.dialog-content.warning {
+  border-top-color: #f6d965;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.dialog-actions button {
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  min-width: 90px;
+  font-size: 0.9rem;
+}
+
+.dialog-ok {
+  background-color: var(--yel);
+  color: var(--card);
+  border: none;
+}
+
+.dialog-ok:hover {
+  background-color: #13141562;
+}
+
+.dialog-cancel {
+  background-color: var(--bg);
+  color: var(--accent);
+  border: 1px solid #d1d5db;
+}
+
+.dialog-cancel:hover {
+  background-color: #e5e7eb; /* Slightly darker background on hover */
 }

@@ -80,29 +80,7 @@
         document.getElementById("aiPopup").style.display = "none";
     }
 
-
-//     //toggle button code 
-// function submitMessage() {
-//     const selectedReplyType = document.querySelector('input[name="reply-type"]:checked').value;
-//     const messageInput = document.getElementById('message').value.trim();
-//     if (messageInput.length === 0) {
-//         alert("Please enter your message before submitting.");
-//         return; 
-//     }
-//     if (selectedReplyType === 'human') {
-//         console.log("Submitting message for Human Reply.");
-//         openPopup1(); 
-
-//     } else if (selectedReplyType === 'ai') {
-//         console.log("Submitting message for AI Reply.");
-//         getAIReply();
-
-//     } else {
-//         console.error("No valid reply type selected.");
-//         alert("Please choose whether you want a Human or AI reply.");
-//     }
-// }
-// Function to handle getting the AI category, submitting, and showing the success popup.
+// toggle button 
 function submitMessage() {
     const selectedReplyType = document.querySelector('input[name="reply-type"]:checked').value;
     const messageInput = document.getElementById('message').value.trim();
@@ -113,16 +91,12 @@ function submitMessage() {
     }
 
     if (selectedReplyType === 'ai') {
-        // Option 1: User wants an AI reply (handled by existing getAIReply)
         console.log("Submitting message for AI Reply.");
         getAIReply(); 
-        return; // Stop the function here.
+        return; 
 
     } else if (selectedReplyType === 'human') {
-        // Option 2: User wants a Human reply. We MUST categorize via AI first.
         console.log("Submitting message for Human Reply. Fetching AI category...");
-
-        // Start the categorization process
         getAICategoryAndSubmit(messageInput);
 
     } else {
@@ -130,19 +104,16 @@ function submitMessage() {
         alert("Please choose whether you want a Human or AI reply.");
     }
 }
-// NEW CORE FUNCTION: This combines the AI category fetch and the submission logic
+//category AI
 function getAICategoryAndSubmit(content) {
-    // 💡 FIX: Declare a variable here so it is available across the entire promise chain scope
     let aiCategory = 'N/A'; 
-
-    // Show a loading indicator on the UI before the fetch
     const submitButton = document.querySelector('.submit-btn span');
     submitButton.innerText = "Analyzing & Submitting...";
     
     let formDataCategory = new FormData();
     formDataCategory.append("content", content);
 
-    // STEP 1: Get AI Category from the server
+    //Get AI Category from the server
     fetch("get-category.php", {
         method: "POST",
         body: formDataCategory
@@ -154,7 +125,7 @@ function getAICategoryAndSubmit(content) {
             return Promise.reject("Error categorizing message: " + categoryData.error);
         }
 
-        // 💡 FIX: Store the category in the accessible variable
+    // Store the category in the accessible variable
         aiCategory = categoryData.category;
         
         // Retrieve other form data needed for final submission
@@ -162,11 +133,8 @@ function getAICategoryAndSubmit(content) {
 
         let formDataSubmit = new FormData();
         formDataSubmit.append("content", content);
-        // CRITICAL: Use the AI's category here
         formDataSubmit.append("category", aiCategory); 
         formDataSubmit.append("public", isPublic);
-
-        // STEP 2: Submit the message to the database (submit-message.php)
         return fetch("submit-message.php", {
             method: "POST",
             body: formDataSubmit

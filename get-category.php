@@ -16,7 +16,6 @@ $data = [
     "contents" => array_merge(
         [
             [
-                [
                     "role" => "user",
                     "parts" => [
                         ["text" => "You are an expert message classifier. Your sole task is to read the user's message and output only the single, best-fit category name from the list: 'Anxiety/Worry', 'Depression/Sadness', 'Grief/Loss', 'Relationship Issues', 'Stress/Burnout', or 'General Check-in'. Do not include any other text, explanation, or conversational filler."],
@@ -166,8 +165,7 @@ $data = [
                         ["text" => $content]
                     ]
                 ]
-            ]
-        ]
+                        ]
     )
 ];
 $ch = curl_init($url);

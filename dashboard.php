@@ -12,7 +12,7 @@ include('connect.php');
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/dashboard.css?v=5">
 </head>
 
 <body>
@@ -79,15 +79,7 @@ HTML;
                         <h2>Message #<span id="detailMessageId"></span></h2>
                     </div>
                     <div class="detail-body">
-                        <p class="label">Category (edit)</p>
-                        <select id="editCategory" class="category-select">
-                            <option value="" disabled selected>Select or Update Category</option>
-                            <option value="Stress">Stress</option>
-                            <option value="Anxiety">Anxiety</option>
-                            <option value="Relationships">Relationships</option>
-                            <option value="Grief">Grief</option>
-                            <option value="Other">Other</option>
-                        </select>
+
                         <div class="detail-status">
                             <span id="detailPublic" style="display:none;"></span>
                             <span id="detailFlagged" class="urgent" style="display:none;"></span>
@@ -113,6 +105,15 @@ HTML;
             </div>
         </main>
     </div>
-
+    <div id="custom-dialog-backdrop" class="dialog-backdrop">
+        <div id="dialog-content" class="dialog-content">
+            <h3 id="dialog-title"></h3>
+            <p id="dialog-message"></p>
+            <div class="dialog-actions">
+                <button id="dialog-cancel-btn" class="dialog-cancel" style="display:none;">Cancel</button>
+                <button id="dialog-ok-btn" class="dialog-ok">OK</button>
+            </div>
+        </div>
+    </div>
     <script src="scripts/dashboard.js"></script>
 </body
