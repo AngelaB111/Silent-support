@@ -53,11 +53,13 @@ function deleteFromDatabase(id, type) {
 
 
 function addQuestion(existing = null) {
+    // Increment the count for display numbering
     questionCount++;
 
     let qBox = document.createElement("div");
     qBox.className = "question-box";
 
+    // Get the database ID for existing questions, or empty string for new ones
     const questionId = existing ? existing.question_id : ''; 
     qBox.innerHTML = `
     <div class="question-header">
@@ -78,56 +80,42 @@ function addQuestion(existing = null) {
 
     document.getElementById("questions-container").appendChild(qBox);
 
+    // --- FIX IS IN THIS BLOCK ---
+    let addButton = qBox.querySelector(".add-option-btn");
+    
     if (existing && existing.options && existing.options.length > 0) {
-        existing.options.forEach(opt => addOption(qBox.querySelector(".add-option-btn"), opt));
+        // If editing, loop through the options array fetched from the database
+        existing.options.forEach(opt => addOption(addButton, opt));
     } else if (!existing) {
-        let addButton = qBox.querySelector(".add-option-btn");
+        // If adding a new question, create two empty options by default
         addOption(addButton);
         addOption(addButton);
     }
 }
+
 function addOption(button, existing = null) {
     let optionRow = document.createElement("div");
     optionRow.className = "option-row";
-
+    const questionBox = button.closest(".question-box");
+    const questionIndex = Array.from(questionBox.parentElement.children).indexOf(questionBox);
     const optionId = existing ? existing.option_id : '';
+    const scoreValue = existing && existing.score !== undefined ? existing.score : '0';
 
     optionRow.innerHTML = `
-        <input type="hidden" name="option_ids[]" value="${optionId}">
+        <input type="hidden" name="options[${questionIndex}][option_ids][]" value="${optionId}">
         
-        <input type="text" name="options_text[]" placeholder="Option text"
+        <input type="text" name="options[${questionIndex}][texts][]" placeholder="Option text"
             value="${existing ? existing.option_text : ''}" required>
-
+            
+        <input type="number" name="options[${questionIndex}][scores][]" placeholder="Score" style="width: 60px;"
+            value="${scoreValue}" 
+            min="0" required>
+        
         <button type="button" class="delete-option-btn"
             onclick="deleteOption(this, '${optionId}')">✖</button>
     `;
-
     button.parentElement.appendChild(optionRow);
 }
-
-
-
-function deleteQuestion(button, questionId) {
-    if (confirm("Delete this question?")) {
-        deleteFromDatabase(questionId, 'question')
-            .then(() => {
-                button.closest(".question-box").remove();
-            })
-            .catch(() => {
-            });
-    }
-}
-function deleteOption(button, optionId) {
-    if (confirm("Delete this option?")) {
-
-        deleteFromDatabase(optionId, 'option')
-            .then(() => {
-                button.closest(".option-row").remove();
-            })
-            .catch(() => {});
-    }
-}
-
 
 
 // --- Result Functions ---

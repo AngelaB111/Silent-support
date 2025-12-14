@@ -1,159 +1,94 @@
-let questionCount = 0;
-let resultsCount = 0;
-const existingQuestions = window.AssessmentData || [];
-const existingResults = window.ResultData || [];
+<?php
+include "connect.php";
+$success = false;
+$error_message = "";
 
-window.onload = function () {
-    if (existingQuestions.length > 0) {
-        existingQuestions.forEach(q => addQuestion(q));
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST['title']) || !isset($_POST['questions']) || !isset($_POST['min_scores'])) {
+        $error_message = "Missing required fields (Title, Questions, or Result Ranges).";
     } else {
-        addQuestion();
-    }
-    if (existingResults.length > 0) {
-        existingResults.forEach(r => addResultRow(r));
-    } else {
-        addResultRow();
-    }
-};
+        $db->begin_transaction();
 
-function deleteFromDatabase(id, type) {
-    if (!id) {
-        return Promise.resolve(); 
-    }
+        try {
+            $title = $_POST['title'];
+            $description = $_POST['description'] ?? '';
+            $source = $_POST['source'] ?? '';
+            $stmt_assessment = $db->prepare("INSERT INTO assessments (title, description, source) VALUES (?, ?, ?)");
+            $stmt_assessment->bind_param("sss", $title, $description, $source);
+            $stmt_assessment->execute();
+            $assessment_id = $db->insert_id;
+            $stmt_assessment->close();
+            $stmt_option = $db->prepare("INSERT INTO options (question_id, option_text, score) VALUES (?, ?, ?)");
+            if (!$assessment_id) {
+                throw new Exception("Failed to insert assessment title.");
+            }
 
-    const url = 'delete_item.php'; 
-    const data = new URLSearchParams();
-    data.append('id', id);
-    data.append('type', type); 
 
-    return fetch(url, {
-        method: 'POST',
-        body: data
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+            $questions = $_POST['questions'];
+            $options_data = $_POST['options'];
+            $stmt_question = $db->prepare("INSERT INTO questions (assessment_id, question_text) VALUES (?, ?)");
+
+            foreach ($questions as $q_index => $question_text) {
+
+                $stmt_question->bind_param("is", $assessment_id, $question_text);
+                $stmt_question->execute();
+                $question_id = $db->insert_id;
+
+                if (!$question_id) {
+                    throw new Exception("Failed to insert question: " . $question_text);
+                }
+                $option_texts = $options_data[$q_index]['texts'];
+                $option_scores = $options_data[$q_index]['scores'];
+
+
+                if (!empty($option_texts)) {
+                    foreach ($option_texts as $o_index => $option_text) {
+                        $score = intval($option_scores[$o_index]);
+
+                        $stmt_option->bind_param("isi", $question_id, $option_text, $score);
+                        $stmt_option->execute();
+                    }
+                }
+            }
+
+            $stmt_question->close();
+            $stmt_option->close();
+
+            $min_scores = $_POST['min_scores'];
+            $max_scores = $_POST['max_scores'];
+            $interpretations = $_POST['interpretations'];
+            $suggestions = $_POST['suggestions'];
+
+            $stmt_results = $db->prepare("INSERT INTO assessment_results (assessment_id, min_score, max_score, interpretation, suggestion) VALUES (?, ?, ?, ?, ?)");
+            foreach ($min_scores as $r_index => $min) {
+
+                $min_val = intval($min);
+                $max_val = intval($max_scores[$r_index]);
+                $interpretation = $interpretations[$r_index];
+                $suggestion = $suggestions[$r_index];
+
+                $stmt_results->bind_param("iiiss", $assessment_id, $min_val, $max_val, $interpretation, $suggestion);
+                $stmt_results->execute();
+            }
+
+            $stmt_results->close();
+            $db->commit();
+            $success = true;
+
+        } catch (Exception $e) {
+            $db->rollback();
+            $error_message = "Database error: " . $e->getMessage() . " The assessment was not saved.";
         }
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            console.log(`${type} with ID ${id} deleted successfully from DB.`);
-        } else {
-            alert(`Error deleting ${type}: ${data.message || 'Unknown error'}`);
-            throw new Error(data.message || 'Database deletion failed');
-        }
-    })
-    .catch(error => {
-        console.error('AJAX deletion error:', error);
-        alert(`Failed to delete ${type} from the database. Please try again.`);
-        throw error; 
-    });
-}
-
-
-function addQuestion(existing = null) {
-    questionCount++;
-
-    let qBox = document.createElement("div");
-    qBox.className = "question-box";
-
-    const questionId = existing ? existing.question_id : ''; 
-    qBox.innerHTML = `
-    <div class="question-header">
-        <h4>Q${questionCount}</h4>
-        <button type="button" class="delete-question-btn" onclick="deleteQuestion(this, '${questionId}')">✖</button>
-    </div>
-
-    <input type="hidden" name="question_ids[]" value="${questionId}">
-
-    <input type="text" name="questions[]" placeholder="Question text"
-    value="${existing ? existing.question_text : ''}" required>
-
-    <div class="options">
-        <label>Options :</label>
-        <button type="button" class="add-option-btn" onclick="addOption(this)">+ Add Option</button>
-    </div>
-    `;
-
-    document.getElementById("questions-container").appendChild(qBox);
-
-    if (existing && existing.options && existing.options.length > 0) {
-        existing.options.forEach(opt => addOption(qBox.querySelector(".add-option-btn"), opt));
-    } else if (!existing) {
-        let addButton = qBox.querySelector(".add-option-btn");
-        addOption(addButton);
-        addOption(addButton);
     }
 }
 
+$db->close();
 
-function deleteQuestion(button, questionId) {
-    if (confirm("Delete this question?")) {
-        deleteFromDatabase(questionId, 'question')
-            .then(() => {
-                button.closest(".question-box").remove();
-            })
-            .catch(() => {
-            });
-    }
+if ($success) {
+    header("Location: admin-assessment.php?edit=$assessment_id&status=success");
+    exit;
+} else {
+    header("Location: admin-assessment.php?status=error&message=" . urlencode($error_message));
+    exit;
 }
-
-function deleteOption(button) {
-    if (confirm("Delete this option?")) {
-        button.closest(".option-row").remove();
-    }
-}
-
-
-// --- Result Functions ---
-
-function addResultRow(existing = null) {
-    resultsCount++;
-
-    let rBox = document.createElement("div");
-    rBox.className = "result-row";
-    
-    // Extract the result ID for deletion
-    const resultId = existing ? existing.result_id : ''; 
-
-    rBox.innerHTML = `
-    <input type="hidden" name="result_ids[]" value="${resultId}">
-
-    <div class="score-range-inputs">
-        <label>Score Range:</label>
-        <input type="number" name="min_scores[]" placeholder="Min Score" style="width: 80px;"
-            value="${existing ? existing.min_score : ''}" required>
-        -
-        <input type="number" name="max_scores[]" placeholder="Max Score" style="width: 80px;"
-            value="${existing ? existing.max_score : ''}" required>
-    </div>
-
-    <label>Interpretation (e.g., 'Severe'):</label>
-    <input type="text" name="interpretations[]" placeholder="Interpretation"
-        value="${existing ? existing.interpretation : ''}" required>
-
-    <label>Suggestion/Recommendation:</label>
-    <textarea name="suggestions[]" rows="2" placeholder="Suggestion for this score range..."
-        required>${existing ? existing.suggestion : ''}</textarea>
-
-    <button type="button" class="delete-result-btn" onclick="deleteResultRow(this, '${resultId}')">Delete Range</button>
-    <hr style="border-top: 1px solid #eee;">
-`;
-
-    document.getElementById("results-container").appendChild(rBox);
-}
-
-function deleteResultRow(button, resultId) {
-    if (confirm("Delete this result range?")) {
-        // 1. Try to delete from the database if an ID exists
-        deleteFromDatabase(resultId, 'result')
-            .then(() => {
-                // 2. If successful (or no ID exists), remove from the DOM
-                button.closest(".result-row").remove();
-            })
-            .catch(() => {
-                // If deletion fails, do nothing
-            });
-    }
-}
+?>
