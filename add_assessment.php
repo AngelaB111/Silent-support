@@ -23,31 +23,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 throw new Exception("Failed to insert assessment title.");
             }
 
-
-            $questions = $_POST['questions'];
-            $options_data = $_POST['options'];
             $stmt_question = $db->prepare("INSERT INTO questions (assessment_id, question_text) VALUES (?, ?)");
 
-            foreach ($questions as $q_index => $question_text) {
+            $options_data = $_POST['options'];
+
+            foreach ($_POST['question_indexes'] as $i => $q_index) {
+
+                $question_text = $_POST['questions'][$q_index];
 
                 $stmt_question->bind_param("is", $assessment_id, $question_text);
                 $stmt_question->execute();
+
                 $question_id = $db->insert_id;
 
                 if (!$question_id) {
-                    throw new Exception("Failed to insert question: " . $question_text);
+                    throw new Exception("Failed to insert question");
                 }
+
+                if (!isset($options_data[$q_index])) {
+                    continue;
+                }
+
                 $option_texts = $options_data[$q_index]['texts'];
                 $option_scores = $options_data[$q_index]['scores'];
 
+                foreach ($option_texts as $o_index => $option_text) {
+                    $score = intval($option_scores[$o_index]);
 
-                if (!empty($option_texts)) {
-                    foreach ($option_texts as $o_index => $option_text) {
-                        $score = intval($option_scores[$o_index]);
-
-                        $stmt_option->bind_param("isi", $question_id, $option_text, $score);
-                        $stmt_option->execute();
-                    }
+                    $stmt_option->bind_param("isi", $question_id, $option_text, $score);
+                    $stmt_option->execute();
                 }
             }
 

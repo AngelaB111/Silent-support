@@ -50,72 +50,83 @@ function deleteFromDatabase(id, type) {
         throw error; 
     });
 }
-
-
 function addQuestion(existing = null) {
-    // Increment the count for display numbering
+    const qIndex = questionCount; 
     questionCount++;
 
     let qBox = document.createElement("div");
     qBox.className = "question-box";
+    qBox.dataset.qindex = qIndex;
 
-    // Get the database ID for existing questions, or empty string for new ones
-    const questionId = existing ? existing.question_id : ''; 
+    const questionId = existing ? existing.question_id : '';
+
     qBox.innerHTML = `
-    <div class="question-header">
-        <h4>Q${questionCount}</h4>
-        <button type="button" class="delete-question-btn" onclick="deleteQuestion(this, '${questionId}')">✖</button>
-    </div>
+        <div class="question-header">
+            <h4>Q${questionCount}</h4>
+            <button type="button" onclick="deleteQuestion(this, '${questionId}')">✖</button>
+        </div>
 
-    <input type="hidden" name="question_ids[]" value="${questionId}">
+        <input type="hidden" name="question_indexes[]" value="${qIndex}">
+        <input type="hidden" name="question_ids[]" value="${questionId}">
 
-    <input type="text" name="questions[]" placeholder="Question text"
-    value="${existing ? existing.question_text : ''}" required>
+        <input type="text"
+               name="questions[${qIndex}]"
+               placeholder="Question text"
+               value="${existing ? existing.question_text : ''}"
+               required>
 
-    <div class="options">
-        <label>Options :</label>
-        <button type="button" class="add-option-btn" onclick="addOption(this)">+ Add Option</button>
-    </div>
+        <div class="options">
+            <label>Options:</label>
+            <button type="button" class="add-option-btn" onclick="addOption(this)">
+                + Add Option
+            </button>
+        </div>
     `;
 
     document.getElementById("questions-container").appendChild(qBox);
 
-    // --- FIX IS IN THIS BLOCK ---
-    let addButton = qBox.querySelector(".add-option-btn");
-    
-    if (existing && existing.options && existing.options.length > 0) {
-        // If editing, loop through the options array fetched from the database
-        existing.options.forEach(opt => addOption(addButton, opt));
-    } else if (!existing) {
-        // If adding a new question, create two empty options by default
-        addOption(addButton);
-        addOption(addButton);
-    }
-}
+    const addBtn = qBox.querySelector(".add-option-btn");
 
-function addOption(button, existing = null) {
+    if (existing && existing.options) {
+        existing.options.forEach(opt => addOption(addBtn, opt));
+    } else {
+        addOption(addBtn);
+        addOption(addBtn);
+    }
+}function addOption(button, existing = null) {
     let optionRow = document.createElement("div");
     optionRow.className = "option-row";
+
     const questionBox = button.closest(".question-box");
-    const questionIndex = Array.from(questionBox.parentElement.children).indexOf(questionBox);
+    const questionIndex = questionBox.dataset.qindex;
+
     const optionId = existing ? existing.option_id : '';
-    const scoreValue = existing && existing.score !== undefined ? existing.score : '0';
+    const scoreValue = existing && existing.score !== undefined ? existing.score : 0;
 
     optionRow.innerHTML = `
-        <input type="hidden" name="options[${questionIndex}][option_ids][]" value="${optionId}">
-        
-        <input type="text" name="options[${questionIndex}][texts][]" placeholder="Option text"
-            value="${existing ? existing.option_text : ''}" required>
-            
-        <input type="number" name="options[${questionIndex}][scores][]" placeholder="Score" style="width: 60px;"
-            value="${scoreValue}" 
-            min="0" required>
-        
-        <button type="button" class="delete-option-btn"
-            onclick="deleteOption(this, '${optionId}')">✖</button>
+        <input type="hidden"
+               name="options[${questionIndex}][option_ids][]"
+               value="${optionId}">
+
+        <input type="text"
+               name="options[${questionIndex}][texts][]"
+               placeholder="Option text"
+               value="${existing ? existing.option_text : ''}"
+               required>
+
+        <input type="number"
+               name="options[${questionIndex}][scores][]"
+               value="${scoreValue}"
+               min="0"
+               required
+               style="width:60px;">
+
+        <button type="button" onclick="this.parentElement.remove()">✖</button>
     `;
+
     button.parentElement.appendChild(optionRow);
 }
+
 
 
 // --- Result Functions ---
