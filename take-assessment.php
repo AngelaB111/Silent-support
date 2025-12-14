@@ -5,14 +5,18 @@ if (!isset($_GET['assessment_id'])) {
   die("No assessment selected.");
 }
 $assessment_id = intval($_GET['assessment_id']);
-
 $assessment_sql = "SELECT title, source FROM assessments WHERE assessment_id = $assessment_id";
 $assessment_result = $db->query($assessment_sql);
-$assessment = $assessment_result->fetch_assoc();
-$questions_sql = "SELECT * FROM questions WHERE assessment_id = $assessment_id";
 
-$Source = $assessment['source'] ?? '';
+if ($assessment_result->num_rows === 0) {
+  die("Assessment not found.");
+}
+
+$assessment = $assessment_result->fetch_assoc();
+$Source = htmlspecialchars($assessment['source'] ?? '');
+$questions_sql = "SELECT question_id, question_text FROM questions WHERE assessment_id = $assessment_id ORDER BY question_id ASC";
 $questions_result = $db->query($questions_sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -48,18 +52,23 @@ $questions_result = $db->query($questions_sql);
       if ($questions_result->num_rows > 0) {
         $q_num = 1;
         while ($q = $questions_result->fetch_assoc()) {
+          $question_id = $q['question_id'];
+
           echo '<div class="question-block">';
           echo '<div class="question">Question #' . $q_num . ': ' . htmlspecialchars($q['question_text']) . '</div>';
 
-          $options_sql = "SELECT * FROM options WHERE question_id = " . $q['question_id'];
+          $options_sql = "SELECT option_id, option_text FROM options WHERE question_id = $question_id ORDER BY option_id ASC";
           $options_result = $db->query($options_sql);
 
           if ($options_result->num_rows > 0) {
             while ($opt = $options_result->fetch_assoc()) {
               echo '<label class="option">
-            <input type="radio" name="options[' . $q['question_id'] . ']" value="' . $opt['option_id'] . '" required>
-            ' . htmlspecialchars($opt['option_text']) . '
-          </label>';
+                                <input type="radio" 
+                                       name="options[' . $question_id . ']" 
+                                       value="' . $opt['option_id'] . '" 
+                                       required>
+                                ' . htmlspecialchars($opt['option_text']) . '
+                            </label>';
             }
           }
           echo '<hr>';
@@ -69,7 +78,6 @@ $questions_result = $db->query($questions_sql);
       } else {
         echo "<p>No questions available for this assessment.</p>";
       }
-
       $db->close();
       ?>
 
@@ -77,7 +85,7 @@ $questions_result = $db->query($questions_sql);
     </form>
     <?php if (!empty($Source)): ?>
       <p class="assessment-source">
-        <strong>Source:</strong> <?php echo htmlspecialchars($Source); ?>
+        <strong>Source:</strong> <?php echo $Source; ?>
       </p>
     <?php endif; ?>
   </div>
