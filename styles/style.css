@@ -204,7 +204,27 @@ textarea::placeholder {
   color: #6c70f5;
   margin-bottom: 0.3rem;
 }
+.status-box {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  transition: opacity 0.3s ease-in-out;
+}
 
+.status-box.error {
+  background-color: #fcebeb;
+  color: #cc0000;
+  border: 1px solid #ebccd1;
+}
+
+.message-box.error {
+  color: #cc0000;
+  border: 1px solid #a5001c;
+
+  box-shadow: 0 5px 15px rgba(245, 90, 90, 0.4);
+}
 select {
   width: 100%;
   padding: 0.8rem;

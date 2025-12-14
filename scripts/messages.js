@@ -5,8 +5,8 @@
         const category = document.getElementById('category').value;
         const isPublic = document.getElementById('makePublic').checked ? 'yes' : 'no';
 
-        if (!content || category === "choose category that best describes your message") {
-            alert("Please write a message and choose a category.");
+        if (!content) {
+            displaySubmissionError("Please write a message.");
             return;
         }
 
@@ -29,10 +29,10 @@
                     document.querySelector(".message-form").reset();
 
                 } else {
-                    alert("Error: " + data.error);
+                    displaySubmissionError("Error: " + data.error);
                 }
             })
-            .catch(err => alert("Network error: " + err));
+            .catch(err => displaySubmissionError("Network error: " + err));
     }
 
     function closePopup1() {
@@ -43,8 +43,8 @@
     const content = document.getElementById('message').value.trim();
     const category = document.getElementById('category').value; 
 
-    if (!content || category === "choose category that best describes your message") {
-        alert("Please write a message and choose a category before getting an AI reply.");
+    if (!content) {
+        displaySubmissionError("Please write a message before getting an AI reply.");
         return;
     }
 
@@ -86,7 +86,7 @@ function submitMessage() {
     const messageInput = document.getElementById('message').value.trim();
     
     if (messageInput.length === 0) {
-        alert("Please enter your message before submitting.");
+        displaySubmissionError("Please enter your message before submitting.");
         return; 
     }
 
@@ -101,7 +101,7 @@ function submitMessage() {
 
     } else {
         console.error("No valid reply type selected.");
-        alert("Please choose whether you want a Human or AI reply.");
+        displaySubmissionError("Please choose whether you want a Human or AI reply.");
     }
 }
 //category AI
@@ -113,7 +113,6 @@ function getAICategoryAndSubmit(content) {
     let formDataCategory = new FormData();
     formDataCategory.append("content", content);
 
-    //Get AI Category from the server
     fetch("get-category.php", {
         method: "POST",
         body: formDataCategory
@@ -121,14 +120,11 @@ function getAICategoryAndSubmit(content) {
     .then(r => r.json())
     .then(categoryData => {
         if (!categoryData.success) {
-            // Error in categorization, return a rejected Promise to skip to the catch block
             return Promise.reject("Error categorizing message: " + categoryData.error);
         }
 
-    // Store the category in the accessible variable
         aiCategory = categoryData.category;
         
-        // Retrieve other form data needed for final submission
         const isPublic = document.getElementById('makePublic').checked ? 'yes' : 'no';
 
         let formDataSubmit = new FormData();
@@ -145,26 +141,37 @@ function getAICategoryAndSubmit(content) {
         return r.json();
     })
     .then(data => {
-        submitButton.innerText = "Submit Message"; // Reset button text
+        submitButton.innerText = "Submit Message"; 
 
         if (data.success) {
-            // STEP 3: Display success popup with the AI's category
             let iframe = document.querySelector("#popupModal1 iframe");
             
-            // 💡 FIX: Use the 'aiCategory' variable stored outside this .then() block
             iframe.src = `success.php?message_id=${data.message_id}&access_code=${data.access_code}&category=${aiCategory}`;
             
             document.getElementById("popupModal1").style.display = "flex";
             document.querySelector(".message-form").reset();
 
         } else {
-            alert("Submission Error: " + data.error);
+            displaySubmissionError("Submission Error: " + data.error);
         }
     })
     .catch(err => {
-        submitButton.innerText = "Submit Message"; // Reset button text
-        // Ensure the error message is clear, whether it was a string or an Error object
+        submitButton.innerText = "Submit Message"; 
         const errorMessage = typeof err === 'string' ? err : (err.message || "Unknown error");
-        alert("Network or submission error: " + errorMessage);
+        displaySubmissionError("Network or submission error: " + errorMessage);
     });
+}
+
+function displaySubmissionError(message) {
+    const statusBox = document.getElementById('submission-status-message');
+    
+    const messageBox = document.getElementById('message');
+    statusBox.textContent = message;
+    statusBox.className = 'status-box error';
+    statusBox.style.display = 'block';
+    messageBox.className= 'message-box error'
+    setTimeout(() => {
+        statusBox.style.display = 'none';
+        statusBox.textContent = '';
+    }, 8000); 
 }

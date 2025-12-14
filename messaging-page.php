@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="styles/navbar.css?v=5" />
-    <link rel="stylesheet" href="styles/style.css?v=5" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/style.css?v=7" />
 </head>
 
 <body>
@@ -32,8 +32,9 @@
                 </div>
 
                 <p class="title1">what’s on your mind ? *</p>
-
-                <textarea id="message" placeholder="share your thoughts, feelings or ask a question"></textarea>
+                <div id="submission-status-message" class="status-box" style="display:none;"></div>
+                <textarea id="message" class="message-box"
+                    placeholder="share your thoughts, feelings or ask a question"></textarea>
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="makePublic">

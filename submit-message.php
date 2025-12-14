@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 if (!$content || !$category) {
-    echo json_encode(['success' => false, 'error' => 'Content and category required']);
+    echo json_encode(['success' => false, 'error' => 'Content required']);
     exit;
 }
 
