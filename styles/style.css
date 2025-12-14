@@ -25,21 +25,20 @@ body {
 }
 
 .subtitle {
-  color: #777; /* Darker for better contrast */
+  color: #777; 
   font-style: italic;
-  margin-bottom: 2.5rem; /* More space */
+  margin-bottom: 2.5rem;
   font-size: 1rem;
 }
 
-/* --- Form Card --- */
 .form-card {
-  background: #ffffff; /* White background */
-  border: 1px solid #eee; /* Subtle border */
+  background: #ffffff;
+  border: 1px solid #eee; 
   max-width: 700px;
   margin: 0 auto;
-  padding: 3rem; /* Increased padding */
+  padding: 3rem; 
   border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Stronger, softer shadow */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
 }
 
 .form-header {

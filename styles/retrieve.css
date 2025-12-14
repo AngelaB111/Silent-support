@@ -19,7 +19,7 @@ h1 {
 }
 
 label {
-    margin-top: 1rem;
+  margin-top: 1rem;
   display: block;
   font-size: 1.4rem;
   margin-bottom: 1rem;
@@ -39,9 +39,9 @@ input {
 .custom-btn {
   background-color: #f5d74c;
   border: none;
-  padding: 0.8rem 2rem ; 
+  padding: 0.8rem 2rem;
   font-size: 1.1rem;
-  margin : 2rem 2rem 2rem ; 
+  margin: 2rem 2rem 2rem;
   cursor: pointer;
   border-radius: 4px;
   font-family: "Times New Roman", serif;
@@ -50,4 +50,24 @@ input {
 
 .custom-btn:hover {
   background-color: #f0cc3c;
+}
+
+.status-box {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.status-box.error {
+  background-color: #fcebeb;
+  color: #cc0000;
+  border: 1px solid #ebccd1;
+}
+
+.id-box.error,
+.accessCode-box.error {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.45);
 }

@@ -164,7 +164,6 @@ function getAICategoryAndSubmit(content) {
 
 function displaySubmissionError(message) {
     const statusBox = document.getElementById('submission-status-message');
-    
     const messageBox = document.getElementById('message');
     statusBox.textContent = message;
     statusBox.className = 'status-box error';
