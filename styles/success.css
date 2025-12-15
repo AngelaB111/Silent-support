@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
@@ -17,9 +17,7 @@ body {
   text-align: center;
 }
 
-
 .check-icon {
- 
   font-size: 3rem;
   color: #000;
   margin-bottom: 1rem;
