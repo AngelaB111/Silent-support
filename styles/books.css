@@ -1,129 +1,262 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Georgia", serif;
-  background: #f5f5f7;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: #4a4a4a;
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px;
-  gap: 40px;
+  padding: 20px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
 }
 
 .left {
-  width: 55%;
+  width: 60%;
   background: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .left h3 {
-  font-size: 18px;
+  font-size: 1.5rem;
+  font-weight: 600;
   margin-bottom: 25px;
+  color: #2c3e50;
 }
 
-.book-card {
-  background: #fafafa;
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.book-card-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff; /* White list item */
   border: 1px solid #e0e0e0;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 15px 20px;
   border-radius: 8px;
+  transition: background-color 0.2s;
 }
 
-.book-card strong {
-  font-size: 18px;
+.book-card-admin:hover {
+  background-color: #f9f9f9;
+}
+
+.book-info {
+  flex-grow: 1;
+}
+.fa-cloud-upload,
+.fa-refresh,
+.fa-plus-circle {
+  color: rgba(238, 238, 238, 0.838);
+}
+
+.fa-times,
+.fa-pencil,
+.fa-trash {
+  color: #1a1a1a;
+}
+
+.book-card-admin strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: block;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.book-author-admin {
+  font-size: 0.9rem;
+  color: #777;
 }
 
 .actions {
-  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
 }
 
+.edit-btn,
+.delete-btn,
+.cancel-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Edit Button Style (Gold Accent) */
 .edit-btn {
-  background: #f4ce45;
-  border: none;
-  padding: 6px 25px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-  font-size: 14px;
+  background: #eac645;
+  color: #1a1a1a;
 }
 
-.delete-btn {
-  background: #e4e4e4;
-  border: none;
-  padding: 6px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
+.edit-btn:hover {
+  background: #f0d769;
+}
+
+.delete-btn,
+.cancel-btn {
+  background: #e0e0e0;
+  color: #000000c7;
+}
+
+.delete-btn:hover,
+.cancel-btn:hover {
+  background: #d4d4d4;
 }
 
 .right {
-  width: 35%;
+  width: 40%;
   background: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.right h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #2c3e50;
 }
 
 .cover-preview {
   width: 100%;
   height: 250px;
-  background: #e6e6e6;
-  border-radius: 6px;
+  background: #f0f0f0;
+  border-radius: 8px;
   margin-bottom: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-preview .preview-text {
+  color: #888;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
 }
 
 .right label {
-  font-size: 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
   display: block;
-  margin: 10px 0 5px;
+  margin: 15px 0 5px;
+  color: #4a4a4a;
 }
 
 .right input[type="text"],
 .right input[type="file"] {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
   margin-bottom: 10px;
-  background: #fff;
+  background: #fcfcfc;
+  transition: border-color 0.2s;
 }
 
+.right input[type="text"]:focus {
+  border-color: #eac645;
+  outline: none;
+  box-shadow: 0 0 4px rgba(234, 198, 69, 0.4);
+}
+
+.upload-btn,
+.right a button.cancel-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
 .upload-btn {
-  width: 100%;
-  padding: 12px;
-  background: #f4ce45;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+  background: #2c3e50;
+  color: #ffffff;
 }
-
-.big-delete {
-  margin-top: 20px;
-  padding: 12px;
-  width: 100%;
-  background: #e4e4e4;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.edit-btn:hover,
 .upload-btn:hover {
-  background: #e9c63e;
+  background: #3a5169;
+}
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.delete-btn:hover,
-.big-delete:hover {
-  background: #dcdcdc;
+.list-header h3 {
+  margin: 0;
+}
+
+.add-new-btn {
+  background: #2c3e50;
+  color: #ffffff;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s;
+}
+
+.add-new-btn:hover {
+  background: #34495e;
+  color: #ffffff;
+}
+.right a button.cancel-btn {
+  background: #e0e0e0;
+  color: #000000d3;
+}
+
+.right a button.cancel-btn:hover {
+  background: #acacac;
+  color: #000000d3;
 }
 
 .img-popup {
@@ -132,7 +265,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: none;
   justify-content: center;
   align-items: center;
@@ -142,7 +275,7 @@ body {
 .img-popup img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 #closePopup {
@@ -150,8 +283,8 @@ body {
   top: 20px;
   right: 30px;
   color: white;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 50px;
+  font-weight: lighter;
   cursor: pointer;
   z-index: 10000;
 }
