@@ -1,13 +1,19 @@
 <?php
 include('connect.php');
-
 $post_id = $_GET['post_id'] ?? '';
+$post_counter_num = $_GET['post_num'] ?? 'N/A';
 
 if (!$post_id) {
     die("Invalid request.");
 }
 
-$stmt = $db->prepare("SELECT * FROM public_posts WHERE post_id = ?");
+$stmt = $db->prepare("
+    SELECT p.*, m.category 
+    FROM public_posts p
+    INNER JOIN messages m ON p.message_id = m.message_id
+    WHERE p.post_id = ?
+");
+
 $stmt->bind_param("i", $post_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -23,12 +29,18 @@ $post = $result->fetch_assoc();
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <title>Public Post #<?php echo $post['post_id']; ?></title>
+
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
     <link rel="stylesheet" href="styles/navbar.css?v=3" />
+
     <link rel="stylesheet" href="styles/public.css?v=6">
 </head>
 
@@ -38,15 +50,28 @@ $post = $result->fetch_assoc();
 
     <div class="container">
 
-        <div class="title1">💬 Public Post #<?php echo $post['post_id']; ?></div>
+        <div class="post-header-info">
 
+            <div class="title1">💬 Public Message #<?php echo htmlspecialchars($post_counter_num); ?></div>
+
+
+        </div>
         <div class="user-message">
             <?php echo nl2br(htmlspecialchars($post['question'])); ?>
         </div>
 
+        <div class="reply-header">Official Reply</div>
+
         <div class="reply">
-            <?php echo nl2br(htmlspecialchars($post['answer'])); ?>
+            <?php
+            if (!empty($post['answer'])) {
+                echo nl2br(htmlspecialchars($post['answer']));
+            } else {
+                echo '<span class="no-reply">A professional reply is coming soon.</span>';
+            }
+            ?>
         </div>
+
 
     </div>
 

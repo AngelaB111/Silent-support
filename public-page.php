@@ -68,7 +68,7 @@ if (!empty($params)) {
 
 
     <link rel="stylesheet" href="styles/navbar.css" />
-    <link rel="stylesheet" href="styles/public.css?v=7">
+    <link rel="stylesheet" href="styles/public.css?v=9">
 </head>
 
 <body>
@@ -120,22 +120,37 @@ if (!empty($params)) {
                 <?php endif; ?>
             </p>
         <?php else: ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
+            <?php $postCounter = 1; ?>
 
+            <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="public-card">
                     <div class="card-content-wrapper">
-                        <div class="question"><span class="preview">
+
+                        <div class="question">
+                            <span class="preview">
                                 <?php echo nl2br(htmlspecialchars($row['question'])); ?>
                             </span>
+
                         </div>
 
-                        <a href="publicview.php?post_id=<?php echo $row['post_id']; ?>" class="view-btn">
-                            view reply
-                        </a>
+                        <div class="card-info">
+                            <span class="message-id-tag">
+                                Message# <?php echo $postCounter; ?>
+                            </span>
+                            <span class="category-tag">
+                                Category: <?php echo htmlspecialchars($row['category']); ?>
+                            </span>
+
+                        </div>
 
                     </div>
-                </div>
 
+                    <a href="publicview.php?post_id=<?php echo $row['post_id']; ?>&post_num=<?php echo $postCounter; ?>"
+                        class="view-btn">
+                        view reply
+                        </a>
+                </div>
+                <?php $postCounter++; ?>
             <?php endwhile; ?>
         <?php endif; ?>
 
