@@ -138,3 +138,50 @@ async function deleteMessage() {
     })
     .catch(e => showAlert('Network error: ' + e.message, 'Network Error', 'error')); 
 }
+
+async function generateAiReply() {
+    const detailContent = document.getElementById('detailContent');
+    const replyTextarea = document.getElementById('replyText');
+    const generateAiBtn = document.getElementById('generateAiBtn');
+
+    const userMessage = detailContent.innerText.trim();
+
+    if (!userMessage) {
+        showCustomDialog('Error', 'No message content available to send to AI.', 'Error');
+        return;
+    }
+
+    const originalHtml = generateAiBtn.innerHTML;
+    generateAiBtn.disabled = true;
+    generateAiBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Generating...';
+
+    const messageId = document.getElementById('detailMessageId').innerText;
+
+    try {
+        const response = await fetch('generate-reply.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `content=${encodeURIComponent(userMessage)}&message_id=${encodeURIComponent(messageId)}`
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            replyTextarea.value = result.reply.trim();
+            showCustomDialog('Success', 'AI response generated and placed in the reply box.', 'Success');
+        } else {
+            console.error("AI Generation Error:", result.error);
+            showCustomDialog('Error', `Failed to generate AI reply: ${result.error}`, 'Error');
+        }
+
+    } catch (error) {
+        console.error('Network or Fetch Error:', error);
+        showCustomDialog('Error', 'A network error occurred while contacting the AI service.', 'Error');
+    } finally {
+        
+        generateAiBtn.innerHTML = originalHtml;
+        generateAiBtn.disabled = false;
+    }
+}

@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "It sounds incredibly overwhelming and distressing to feel panic when thinking about the future, and I want you to know that your feelings are valid. It takes a lot of strength to acknowledge that.\n\nWhen those thoughts become too much, sometimes it can help to gently bring your attention to the present moment. Try focusing on a few things you can sense right now – maybe the feeling of your feet on the floor, the sound of your own breath, or something you can see in front of you. Take a few slow, deep breaths, in through your nose and out through your mouth, allowing yourself to anchor a little.\n\nPlease be kind to yourself as you navigate these feelings. If this panic continues to feel overwhelming, reaching out to a mental health professional for more dedicated support can offer additional tools and comfort."
+            "text": "Hello to you too. It's good to hear from you.\n\nI'm here to listen without judgment whenever you're ready to share what's on your mind, or even if you just want to sit with things for a moment. Please know this is a safe space for you.\n\nPerhaps take a slow, gentle breath right now – just noticing it fill and leave your body. Sometimes, a simple moment of calm can make a difference.\n\nThere's no pressure, but if you feel like sharing more, I'm ready to hear it. Or, if you prefer, we can simply focus on that breath for a little while longer."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 66,
-    "candidatesTokenCount": 161,
-    "totalTokenCount": 921,
+    "promptTokenCount": 60,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 1270,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 66
+        "tokenCount": 60
       }
     ],
-    "thoughtsTokenCount": 694
+    "thoughtsTokenCount": 1075
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "ZH45acLtIPnV7M8PzL7DoQs"
+  "responseId": "QHhAacLQJai2nsEPna_tsAk"
 }
