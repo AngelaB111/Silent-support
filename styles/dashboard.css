@@ -17,15 +17,48 @@ body {
 }
 .ai-btn {
   background-color: #5bc0de;
-  color: white;
+  color: var(--accent);
   font-weight: 600;
-  transition: background-color 0.2s ease;
+  box-shadow: 1px 1px 2px rgba(2, 2, 2, 0.279);
+}
+.fa-magic,
+.fa-trash,
+.fa-paper-plane {
+  color: white;
 }
 
 .ai-btn:hover {
   background-color: #31b0d5;
 }
+.message-filters {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 12px 8px;
+}
 
+.filter-tab {
+  display: block;
+  padding: 6px 14px;
+  text-decoration: none;
+  color: #444;
+  background: #ffffff;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.filter-tab:hover {
+  background-color: #d8d8d8;
+}
+
+.filter-tab.active {
+  background-color: var(--yel);
+  color: var(--accent);
+  font-weight: 600;
+  border-color: #e0c54c;
+}
 .container {
   display: flex;
   gap: 2rem;
@@ -47,7 +80,7 @@ body {
   background: var(--card);
   border-radius: 1rem;
   padding: 1rem;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 110px);
   overflow-y: auto;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
@@ -61,7 +94,6 @@ body {
   cursor: pointer;
   transition: all 0.2s;
 }
-
 .message-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(15, 15, 15, 0.06);
@@ -141,6 +173,7 @@ body {
 }
 
 .right-panel {
+  /* height: 100vh; */
   flex: 1;
   max-width: 40rem;
   display: flex;
@@ -211,6 +244,29 @@ body {
   border: 1px solid #e6e6e6;
   resize: vertical;
   margin-top: 6px;
+  transition: all 0.2s;
+}
+#replyText.locked {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.reply-locked {
+  padding: 8px 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  color: #555;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.detail-actions button.locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .detail-actions {
@@ -225,15 +281,6 @@ body {
 .sendImg {
   height: 1rem;
 }
-
-#deleteBtn {
-  background-color: var(--danger);
-}
-
-#saveReplyBtn {
-  background-color: #f6d965;
-}
-
 .detail-actions button.btn {
   display: flex;
   align-items: center;
@@ -253,25 +300,27 @@ body {
   background-color: #f6d965;
   color: var(--accent);
   border-color: #f6d965;
+  box-shadow: 1px 1px 2px rgba(2, 2, 2, 0.279);
 }
 
-#saveReplyBtn:hover {
-  box-shadow: 0 4px 8px rgba(96, 95, 33, 0.08);
+#saveReplyBtn:not(.locked):hover {
+  background-color: #dcc052;
+  color: #111;
 }
 
 #deleteBtn {
   background-color: var(--danger);
-  color: white;
+  color: var(--card);
   border: none;
+  box-shadow: 1px 1px 2px rgba(2, 2, 2, 0.279);
 }
 
 #deleteBtn:hover {
-  background-color: var(--danger);
-  color: white;
-  box-shadow: 0 4px 8px rgba(225, 29, 72, 0.2);
+  color: var(--card);
+  background-color: rgb(206, 28, 67);
 }
 
-#replyText:focus {
+#replyText:focus:not([readonly]) {
   border-color: var(--yel);
   outline: none;
   box-shadow: 0 0 0 3px rgba(235, 232, 37, 0.1);
@@ -282,9 +331,8 @@ body {
   height: 1rem;
   width: 1rem;
 }
-
 .dialog-backdrop {
-  display: none; /* Initially hidden */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -305,8 +353,6 @@ body {
   width: 380px;
   text-align: center;
   transition: all 0.3s ease-in-out;
-
-  /* Default border style (e.g., info/confirmation) */
   border-top: 6px solid var(--primary);
 }
 
@@ -358,7 +404,7 @@ body {
 }
 
 .dialog-ok:hover {
-  background-color: #13141562;
+  background-color: #dcc052;
 }
 
 .dialog-cancel {
@@ -368,5 +414,5 @@ body {
 }
 
 .dialog-cancel:hover {
-  background-color: #e5e7eb; /* Slightly darker background on hover */
+  background-color: #e5e7eb;
 }

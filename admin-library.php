@@ -91,12 +91,6 @@ if (isset($_GET['edit'])) {
                     <label for="author">Author:</label>
                     <input type="text" name="author" id="author"
                         value="<?php echo htmlspecialchars($editBook['author']); ?>">
-
-                    <label for="category">Category:</label>
-                    <input type="text" name="category" id="category"
-                        value="<?php echo htmlspecialchars($editBook['category']); ?>">
-
-
                     <label for="coverInput">Replace Cover Image (optional):</label>
                     <input type="file" name="cover_image" id="coverInput" accept="image/*">
 
@@ -126,9 +120,6 @@ if (isset($_GET['edit'])) {
 
                     <label for="author_new">Author:</label>
                     <input type="text" name="author" id="author_new">
-
-                    <label for="category_new">Category:</label>
-                    <input type="text" name="category" id="category_new" required>
 
                     <label for="coverInputNew">Cover Image:</label>
                     <input type="file" name="cover_image" id="coverInput" required accept="image/*">

@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "Hello to you too. It's good to hear from you.\n\nI'm here to listen without judgment whenever you're ready to share what's on your mind, or even if you just want to sit with things for a moment. Please know this is a safe space for you.\n\nPerhaps take a slow, gentle breath right now – just noticing it fill and leave your body. Sometimes, a simple moment of calm can make a difference.\n\nThere's no pressure, but if you feel like sharing more, I'm ready to hear it. Or, if you prefer, we can simply focus on that breath for a little while longer."
+            "text": "Hello there. It's good to connect with you. I'm here to listen if you'd like to share what's on your mind or how you're feeling today. Take a moment to settle in, and know that I'm here for you."
           }
         ],
         "role": "model"
@@ -19,16 +19,16 @@ RESPONSE:
   ],
   "usageMetadata": {
     "promptTokenCount": 60,
-    "candidatesTokenCount": 135,
-    "totalTokenCount": 1270,
+    "candidatesTokenCount": 56,
+    "totalTokenCount": 800,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
         "tokenCount": 60
       }
     ],
-    "thoughtsTokenCount": 1075
+    "thoughtsTokenCount": 684
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "QHhAacLQJai2nsEPna_tsAk"
+  "responseId": "Ok5BabDKJsmNvdIPi7PdsQM"
 }
