@@ -1,7 +1,9 @@
-.fa {
+.fa-circle {
   color: #f6d965;
 }
-
+.fa-chevron-left {
+  color: #0000009c;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -36,7 +38,7 @@ header.navbar .back-btn {
 }
 
 .back-btn:hover {
-  background-color: #e6c85a;
+  background-color: #e6c85a70;
   border-color: #e6c85a;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

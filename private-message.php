@@ -43,7 +43,7 @@ $stmt1->close();
     <?php include("navbar.php") ?>
     <span class="body1">
         <div class="container">
-            <div class="title">💬 Message #<?php echo htmlspecialchars($message['message_id']); ?></div>
+            <div class="title">Private Message </div>
 
             <div class="user-message">
                 <?php echo nl2br(htmlspecialchars($message['content'])); ?>

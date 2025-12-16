@@ -6,7 +6,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
         <div class="nav-left-group">
             <?php if ($current_page !== 'home.php'): ?>
-                <button onclick="history.back()" class="back-btn">← Back</button>
+                <button onclick="history.back()" class="back-btn"><i class="fa fa-chevron-left"
+                        aria-hidden="true"></i></button>
             <?php endif; ?>
 
             <div class="logo">
@@ -19,9 +20,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 echo 'active'; ?>">Home</a>
             <a href="library.php" class="<?php if ($current_page === 'library.php')
                 echo 'active'; ?>">Library</a>
-            <a href="assessments.php"
-                class="<?php if ($current_page === 'assessments.php')
-                    echo 'active'; ?>">Assessments</a>
+            <a href="assessments.php" class="<?php if ($current_page === 'assessments.php')
+                echo 'active'; ?>">Assessments</a>
             <a href="public-page.php" class="<?php if ($current_page === 'public-page.php')
                 echo 'active'; ?>">Public
                 Q&A</a>
