@@ -20,7 +20,7 @@ if (isset($_GET['edit'])) {
         $optQ = $db->query("SELECT * FROM options WHERE question_id=" . $q['question_id']);
         $q['options'] = $optQ->fetch_all(MYSQLI_ASSOC);
         $questions[] = $q;
-    } // === TEMPORARY DEBUG CHECK ===
+    }
     if ($editMode && !empty($questions)) {
         echo "";
         echo "";
@@ -32,7 +32,6 @@ if ($editMode) {
     $resultsQuery = $db->query("SELECT * FROM assessment_results WHERE assessment_id=$id");
     $results = $resultsQuery->fetch_all(MYSQLI_ASSOC);
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,7 +43,7 @@ if ($editMode) {
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/admin-assessments.css?v=5">
+    <link rel="stylesheet" href="styles/admin-assessments.css?v=7">
 </head>
 
 <body>
@@ -128,7 +127,7 @@ if ($editMode) {
         }
         ?>;
     </script>
-    <script src="admin-assessment.js?v=6" defer>
+    <script src="scripts/admin-assessment.js?v=6" defer>
     </script>
 
 </body>

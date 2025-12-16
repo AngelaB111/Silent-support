@@ -63,7 +63,8 @@ function addQuestion(existing = null) {
     qBox.innerHTML = `
         <div class="question-header">
             <h4>Q${questionCount}</h4>
-            <button type="button" onclick="deleteQuestion(this, '${questionId}')">✖</button>
+            <button type="button" class="
+delete-question-btn" onclick="deleteQuestion(this, '${questionId}')">✖</button>
         </div>
 
         <input type="hidden" name="question_indexes[]" value="${qIndex}">
@@ -77,7 +78,7 @@ function addQuestion(existing = null) {
 
         <div class="options">
             <label>Options:</label>
-            <button type="button" class="add-option-btn" onclick="addOption(this)">
+            <button type="button"  class="add-option-btn" onclick="addOption(this)">
                 + Add Option
             </button>
         </div>
@@ -121,7 +122,8 @@ function addQuestion(existing = null) {
                required
                style="width:60px;">
 
-        <button type="button" onclick="this.parentElement.remove()">✖</button>
+        <button type="button"  class="
+delete-option-btn" onclick="this.parentElement.remove()">✖</button>
     `;
 
     button.parentElement.appendChild(optionRow);
@@ -169,7 +171,6 @@ function addResultRow(existing = null) {
 
 function deleteResultRow(button, resultId) {
     if (confirm("Delete this result range?")) {
-        // 1. Try to delete from the database if an ID exists
         deleteFromDatabase(resultId, 'result')
             .then(() => {
                 // 2. If successful (or no ID exists), remove from the DOM
