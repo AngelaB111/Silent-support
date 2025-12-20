@@ -38,44 +38,6 @@
     function closePopup1() {
         document.getElementById("popupModal1").style.display = "none";
     }
-//Ai response popup :  
-   function getAIReply() {
-    const content = document.getElementById('message').value.trim();
-    const category = document.getElementById('category').value; 
-
-    if (!content) {
-        displaySubmissionError("Please write a message before getting an AI reply.");
-        return;
-    }
-
-    document.getElementById("aiReplyBox").innerHTML = 
-        '<p style="text-align:center; padding: 20px;"><strong>Generating Response...</strong></p>';
-    document.getElementById("aiPopup").style.display = "flex";
-
-
-    let formData = new FormData();
-    formData.append("content", content);
-    formData.append("category", category);
-
-    fetch("ai-reply.php", {
-        method: "POST",
-        body: formData
-    })
-        .then(r => r.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById("aiReplyBox").innerHTML = data.reply;
-            } else {
-                document.getElementById("aiReplyBox").innerHTML = 
-                    '<h2>AI Error</h2><p>Sorry, the AI service encountered an issue: ' + (data.error || "Unknown Error") + '</p>';
-            }
-        })
-        .catch(err => {
-            document.getElementById("aiReplyBox").innerHTML = 
-                '<h2>Network Error</h2><p>Could not connect to the AI service. Error details: ' + err + '</p>';
-        });
-}
-
     function closeAIPopup() {
         document.getElementById("aiPopup").style.display = "none";
     }
@@ -124,13 +86,17 @@ function getAICategoryAndSubmit(content) {
         }
 
         aiCategory = categoryData.category;
+ aiFlagged = categoryData.flagged;
+
         
         const isPublic = document.getElementById('makePublic').checked ? 'yes' : 'no';
 
         let formDataSubmit = new FormData();
         formDataSubmit.append("content", content);
-        formDataSubmit.append("category", aiCategory); 
-        formDataSubmit.append("public", isPublic);
+        formDataSubmit.append("category", aiCategory);
+formDataSubmit.append("flagged", aiFlagged); 
+formDataSubmit.append("public", isPublic);
+
         return fetch("submit-message.php", {
             method: "POST",
             body: formDataSubmit
