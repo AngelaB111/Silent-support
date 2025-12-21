@@ -4,7 +4,6 @@ include("connect.php");
 $message_id = $_GET['message_id'] ?? '-';
 $access_code = $_GET['access_code'] ?? '';
 $category = $_GET['category'] ?? 'N/A';
-// Determine if the message is public or private based on the access code's presence
 $is_public = empty($access_code);
 ?>
 

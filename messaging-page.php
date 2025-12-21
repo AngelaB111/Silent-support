@@ -50,19 +50,6 @@
                         and Access code (you’ll receive them after submission)</p>
                 </div>
 
-                <div class="reply-toggle-group">
-                    <input type="radio" id="reply-human" name="reply-type" value="human" checked>
-                    <label for="reply-human">
-                        <img src="icons/send.png" alt="Send Icon">
-                        Get Therapist Reply
-                    </label>
-
-                    <input type="radio" id="reply-ai" name="reply-type" value="ai">
-                    <label for="reply-ai">
-                        <img src="icons/ai-icon.png" alt="Robot Icon">
-                        Get AI Reply
-                    </label>
-                </div>
 
                 <button type="button" class="submit-btn" onclick="submitMessage()">
                     <span>Submit Message</span>
@@ -78,23 +65,6 @@
             <iframe src="success.php" frameborder="0"></iframe>
         </div>
     </div>
-
-    <div id="aiPopup" class="modal1" style="display:none;">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeAIPopup()">&times;</span>
-            <div class="ai-container">
-                <h1 class="ai-title">
-                    <img class="ai-img" src="icons/ai-icon.png" alt="Robot Icon"> Silent Support AI Response:
-                </h1>
-                <p class="ai-description"> Thank you for sharing your message in this safe space. This automated
-                    response is
-                    dedicated to offering immediate support and understanding.</p>
-            </div>
-            <div id="aiReplyBox"></div>
-
-        </div>
-    </div>
-
 </body>
 
 </html>

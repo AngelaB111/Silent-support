@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "I hear you, and it sounds like you're feeling a lot of anxiety right now. That can be incredibly overwhelming, and it's completely understandable to feel this way.\n\nFor a moment, when you feel able, you might try this simple grounding technique: notice five things you can see, four things you can feel (like the chair beneath you or your clothes), three things you can hear, two things you can smell, and one thing you can taste. This can sometimes help gently bring you back to the present.\n\nRemember to be gentle with yourself in these moments. Even a few minutes of quiet or a warm drink can offer a small act of self-care."
+            "text": "Hello there. It's good to connect with you today.\n\nI'm here to listen whenever you're ready to share what's on your mind. Take your time, and know that you can share as much or as little as feels comfortable for you right now."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 63,
-    "candidatesTokenCount": 138,
-    "totalTokenCount": 754,
+    "promptTokenCount": 60,
+    "candidatesTokenCount": 57,
+    "totalTokenCount": 711,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 63
+        "tokenCount": 60
       }
     ],
-    "thoughtsTokenCount": 553
+    "thoughtsTokenCount": 594
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "1VhBadvSFsWnkdUPkqbn0AM"
+  "responseId": "38tHaY31KqvwxN8PkK-GiQk"
 }

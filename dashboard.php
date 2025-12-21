@@ -8,6 +8,8 @@ if ($filter === 'pending') {
     $sql_where = "WHERE replied = 'no'";
 } elseif ($filter === 'answered') {
     $sql_where = "WHERE replied = 'yes'";
+} elseif ($filter === 'Urgent') {
+    $sql_where = "WHERE flagged = 'yes'";
 }
 ?>
 <!doctype html>
@@ -35,10 +37,15 @@ if ($filter === 'pending') {
 
             <div class="message-filters">
                 <a href="?status=all" class="filter-tab <?php echo $filter === 'all' ? 'active' : ''; ?>">All</a>
+                <a href="?status=Urgent"
+                    class="filter-tab <?php echo $filter === 'Urgent' ? 'active' : ''; ?>">Urgent</a>
+
                 <a href="?status=pending"
                     class="filter-tab <?php echo $filter === 'pending' ? 'active' : ''; ?>">Pending</a>
+
                 <a href="?status=answered"
                     class="filter-tab <?php echo $filter === 'answered' ? 'active' : ''; ?>">Answered</a>
+
             </div>
 
             <div id="messagesContainer" class="messages-container">

@@ -38,33 +38,14 @@
     function closePopup1() {
         document.getElementById("popupModal1").style.display = "none";
     }
-    function closeAIPopup() {
-        document.getElementById("aiPopup").style.display = "none";
-    }
-
 // toggle button 
 function submitMessage() {
-    const selectedReplyType = document.querySelector('input[name="reply-type"]:checked').value;
     const messageInput = document.getElementById('message').value.trim();
-    
     if (messageInput.length === 0) {
         displaySubmissionError("Please enter your message before submitting.");
         return; 
     }
-
-    if (selectedReplyType === 'ai') {
-        console.log("Submitting message for AI Reply.");
-        getAIReply(); 
-        return; 
-
-    } else if (selectedReplyType === 'human') {
-        console.log("Submitting message for Human Reply. Fetching AI category...");
-        getAICategoryAndSubmit(messageInput);
-
-    } else {
-        console.error("No valid reply type selected.");
-        displaySubmissionError("Please choose whether you want a Human or AI reply.");
-    }
+    getAICategoryAndSubmit(messageInput);
 }
 //category AI
 function getAICategoryAndSubmit(content) {
