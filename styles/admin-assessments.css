@@ -50,6 +50,10 @@ h3 {
   justify-content: space-between;
   align-items: center;
 }
+
+.assessment-card:hover {
+  background-color: white;
+}
 .assessment-card strong {
   font-size: 1rem;
   font-weight: 600;
@@ -73,6 +77,7 @@ h3 {
   cursor: pointer;
   font-family: inherit;
   font-weight: 600;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.05);
 }
 
 .edit-btn,
@@ -94,12 +99,12 @@ h3 {
   background: #f0cc3c;
 }
 .delete-btn {
-  background: #eee;
-  color: #555;
+  background: #dedede;
+  color: #323232;
 }
 
 .delete-btn:hover {
-  background: #ddd;
+  background-color: #bebebe;
 }
 
 .publish-btn {

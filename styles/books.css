@@ -113,7 +113,6 @@ body {
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-/* Edit Button Style (Gold Accent) */
 .edit-btn {
   background: #eac645;
   color: #1a1a1a;

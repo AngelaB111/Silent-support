@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "Hello there. It's good to connect with you today.\n\nI'm here to listen whenever you're ready to share what's on your mind. Take your time, and know that you can share as much or as little as feels comfortable for you right now."
+            "text": "Hello there. I'm glad you've reached out. Take a moment to settle in. When you're ready, I'm here to listen without judgment about anything that's on your mind."
           }
         ],
         "role": "model"
@@ -19,16 +19,16 @@ RESPONSE:
   ],
   "usageMetadata": {
     "promptTokenCount": 60,
-    "candidatesTokenCount": 57,
-    "totalTokenCount": 711,
+    "candidatesTokenCount": 43,
+    "totalTokenCount": 304,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
         "tokenCount": 60
       }
     ],
-    "thoughtsTokenCount": 594
+    "thoughtsTokenCount": 201
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "38tHaY31KqvwxN8PkK-GiQk"
+  "responseId": "hilJaaekNuulkdUP5Jr3gA4"
 }
