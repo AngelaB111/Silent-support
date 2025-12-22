@@ -1,0 +1,128 @@
+/* Ensure the page background is consistent */
+body {
+  background: #f8f9fa;
+  margin: 0;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Centers the profile card on the page below the nav */
+.profile-card {
+  max-width: 450px;
+  width: 90%;
+  background: #ffffff;
+  padding: 35px;
+  margin: 60px auto; /* Centers horizontally and adds top space */
+  border-radius: 24px; /* Matches the detail-card rounding */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.profile-card h2 {
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d2d2d;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #eee;
+  font-size: 15px;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #f6d965;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(246, 217, 101, 0.15);
+}
+
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #9aa0a6;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  background: #f6d965;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d2d2d;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(246, 217, 101, 0.2);
+}
+
+.save-btn:hover {
+  background: #dcc052;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(246, 217, 101, 0.3);
+}
+
+.save-btn:active {
+  transform: translateY(0);
+}
+.toast-notification {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 16px 24px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border: 2px solid #f6d965;
+}
+.toast-notification.show {
+  top: 30px;
+}
+
+.toast-notification i {
+  color: #2ecc71;
+  font-size: 1.2rem;
+}
+
+.toast-notification span {
+  font-weight: 600;
+  color: #2d2d2d;
+  font-size: 0.95rem;
+}
+
+.toast-notification.show ~ .profile-card {
+  opacity: 0.8;
+  filter: blur(1px);
+  transition: all 0.5s;
+}

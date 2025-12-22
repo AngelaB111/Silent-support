@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
       $user = mysqli_fetch_assoc($results);
       if (password_verify($password, $user['password'])) {
 
-        $_SESSION['Therapist_id'] = $user['Therapist_id'];
+        $_SESSION['Therapist_id'] = $user['Therapist_Id'];
 
         $_SESSION['Therapist_username'] = $user['username'];
 

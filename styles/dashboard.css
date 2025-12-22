@@ -406,7 +406,9 @@ body {
 .dialog-ok:hover {
   background-color: #dcc052;
 }
-
+.messages {
+  font-weight: bolder;
+}
 .dialog-cancel {
   background-color: var(--bg);
   color: var(--accent);

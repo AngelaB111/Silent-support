@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "Hello there. I'm glad you've reached out. Take a moment to settle in. When you're ready, I'm here to listen without judgment about anything that's on your mind."
+            "text": "I hear you, and it sounds like you're feeling a lot of anxiety right now. That must be incredibly tough, and please know it's completely understandable to feel this way sometimes.\n\nWhen anxiety feels overwhelming, sometimes a simple grounding exercise can offer a moment of calm. Perhaps try to bring your attention to your breath for a minute or two: inhale slowly through your nose for a count of four, hold for a count of two, and exhale slowly through your mouth for a count of six.\n\nRemember, it's okay to feel what you're feeling, and taking small steps to care for yourself can make a difference. I'm here to listen if you'd like to talk more."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 60,
-    "candidatesTokenCount": 43,
-    "totalTokenCount": 304,
+    "promptTokenCount": 63,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 752,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 60
+        "tokenCount": 63
       }
     ],
-    "thoughtsTokenCount": 201
+    "thoughtsTokenCount": 544
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "hilJaaekNuulkdUP5Jr3gA4"
+  "responseId": "63dJaZeTJdb4nsEPu5XXgAo"
 }

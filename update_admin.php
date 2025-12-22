@@ -1,28 +1,54 @@
 <?php
-require 'connect.php';
-if (!isset($_SESSION['Therapist_username'])) {
+include('connect.php');
+
+if (!isset($_SESSION['Therapist_id'])) {
     die("Unauthorized access");
 }
 
 $admin_id = $_SESSION['Therapist_id'];
-$username = trim($_POST['username']);
-$password = $_POST['password'];
-$confirm = $_POST['confirm_password'];
 
-$stmt = $db->prepare("UPDATE admin SET username=? WHERE id=?");
-$stmt->bind_param("si", $username, $Therapist_id);
-$stmt->execute();
+$username = trim($_POST['username'] ?? '');
+$password = trim($_POST['password'] ?? '');
+$confirm = trim($_POST['confirm_password'] ?? '');
+
+$success_msg = [];
+$error_msg = [];
+
+if (!empty($username)) {
+    $stmt_user = $db->prepare("UPDATE therapist SET username=? WHERE Therapist_Id=?");
+    $stmt_user->bind_param("si", $username, $admin_id);
+
+    if ($stmt_user->execute()) {
+        $_SESSION['Therapist_username'] = $username;
+        $success_msg[] = "Username updated successfully.";
+    } else {
+        $error_msg[] = "Failed to update username: " . $stmt_user->error;
+    }
+}
 
 if (!empty($password)) {
     if ($password !== $confirm) {
-        die("Passwords do not match");
+        $error_msg[] = "Passwords do not match!";
+    } else {
+        $hashed = password_hash($password, PASSWORD_DEFAULT);
+        $stmt_pw = $db->prepare("UPDATE therapist SET password=? WHERE Therapist_Id=?");
+        $stmt_pw->bind_param("si", $hashed, $admin_id);
+
+        if ($stmt_pw->execute()) {
+            $success_msg[] = "Password updated successfully.";
+        } else {
+            $error_msg[] = "Failed to update password: " . $stmt_pw->error;
+        }
     }
-
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
-
-    $stmt = $db->prepare("UPDATE admin SET password=? WHERE id=?");
-    $stmt->bind_param("si", $hashed, $Therapist_id);
-    $stmt->execute();
 }
 
-echo "Credentials updated successfully";
+if (!empty($success_msg)) {
+    $_SESSION['success_msg'] = implode(" ", $success_msg);
+}
+
+if (!empty($error_msg)) {
+    $_SESSION['error_msg'] = implode(" ", $error_msg);
+}
+
+header("Location: update.php");
+exit();

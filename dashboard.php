@@ -24,8 +24,8 @@ if ($filter === 'pending') {
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/navbar1.css?v=5">
+    <link rel="stylesheet" href="styles/dashboard.css?v=7">
 </head>
 
 <body>
@@ -34,7 +34,7 @@ if ($filter === 'pending') {
     <div class="container">
         <aside class="left-panel">
             <header>
-                <h2>Messages</h2>
+                <h2 class="messages">Messages</h2>
             </header>
 
             <div class="message-filters">
