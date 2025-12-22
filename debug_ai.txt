@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "I hear you, and it sounds like you're feeling a lot of anxiety right now. That must be incredibly tough, and please know it's completely understandable to feel this way sometimes.\n\nWhen anxiety feels overwhelming, sometimes a simple grounding exercise can offer a moment of calm. Perhaps try to bring your attention to your breath for a minute or two: inhale slowly through your nose for a count of four, hold for a count of two, and exhale slowly through your mouth for a count of six.\n\nRemember, it's okay to feel what you're feeling, and taking small steps to care for yourself can make a difference. I'm here to listen if you'd like to talk more."
+            "text": "I hear you, and it sounds like you're feeling a lot of anxiety right now. That's a really challenging and often overwhelming feeling to experience, and it's completely okay to feel that way.\n\nWhen anxiety feels overwhelming, sometimes focusing on your breath can offer a small anchor. Could you try placing a hand on your stomach and taking a slow, deep breath in through your nose, feeling your stomach rise, then exhaling slowly through your mouth? Repeat that a few times, gently bringing your attention to the sensation of your breath.\n\nRemember to be kind and patient with yourself in this moment. Even small acts of self-care can make a difference."
           }
         ],
         "role": "model"
@@ -19,16 +19,16 @@ RESPONSE:
   ],
   "usageMetadata": {
     "promptTokenCount": 63,
-    "candidatesTokenCount": 145,
-    "totalTokenCount": 752,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 750,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
         "tokenCount": 63
       }
     ],
-    "thoughtsTokenCount": 544
+    "thoughtsTokenCount": 551
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "63dJaZeTJdb4nsEPu5XXgAo"
+  "responseId": "P49Jab-1KYyXvdIP0r7GsQg"
 }

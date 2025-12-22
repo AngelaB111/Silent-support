@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
   <link rel="stylesheet" href="styles/navbar.css?v=3" />
-  <link rel="stylesheet" href="styles/style2.css">
+  <link rel="stylesheet" href="styles/style2.css?v=5">
 
 </head>
 
@@ -97,35 +97,37 @@
       <p>chat with an AI bot</p>
     </div>
   </div>
-
-  <div class="disclaimer">
-
+ <div class="line"> </div>
+  <section class="disclaimer">
     <h1>Disclaimer</h1>
-    <p>
-      <span class="bold-text"> 1. Not a Substitute for Emergency Help: </span> If you are in crisis or believe you may
-      be in danger, do not
-      use this
-      website. This service is not intended for emergencies. If you are experiencing a mental health emergency, please
-      contact your local emergency number or reach out to one of the hotlines
-    </p>
-    <p> <span class="bold-text">2. No Therapist–Patient Relationship: </span>Use of this website does not create a
-      therapist–patient or professional
-      relationship between you and the therapist. Any responses provided through this platform are for general
-      informational and supportive purposes only, and should not be considered a substitute for professional diagnosis,
-      treatment, or therapy.</p>
-    <p> <span class="bold-text">3. Limitations of Liability:</span> This website and its operators assume no
-      responsibility or liability for any loss,
-      harm, or damage arising from your reliance on information provided through this service. You are solely
-      responsible for how you interpret and act upon the content or advice shared here.</p>
-    <p> <span class="bold-text">4. Content Accuracy:</span>While every effort is made to provide accurate and helpful
-      responses, no guarantee is made
-      regarding the accuracy, completeness, or reliability of the content on this website. The information provided
-      should not replace consultation with a qualified mental health professional.
-    </p>
+    <div class="disclaimer-grid">
 
+      <div class="disclaimer-item">
+        <i class="fa fa-ambulance"></i>
+        <p><span class="bold-text">Not an Emergency Service</span><br>If you are in crisis, please contact your local
+          emergency number immediately.</p>
+      </div>
 
-  </div>
+      <div class="disclaimer-item">
+        <i class="fa fa-user-md"></i>
+        <p><span class="bold-text">No Patient Relationship</span><br>Use of this site does not create a formal
+          therapist-patient relationship.</p>
+      </div>
 
+      <div class="disclaimer-item">
+        <i class="fa fa-shield"></i>
+        <p><span class="bold-text">Limit of Liability</span><br>We assume no responsibility for actions taken based on
+          the information provided here.</p>
+      </div>
+
+      <div class="disclaimer-item">
+        <i class="fa fa-check-circle"></i>
+        <p><span class="bold-text">Content Accuracy</span><br>Responses are for support purposes and are not a
+          substitute for professional diagnosis.</p>
+      </div>
+
+    </div>
+  </section>
 
 </body>
 
