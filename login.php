@@ -18,20 +18,18 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($results) == 1) {
       $user = mysqli_fetch_assoc($results);
       if (password_verify($password, $user['password'])) {
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "You are now logged in";
+
+        $_SESSION['Therapist_id'] = $user['Therapist_id'];
+
+        $_SESSION['Therapist_username'] = $user['username'];
 
         echo "<script>
-        // Close popup (if still visible)
         if (window.top.document.getElementById('popupModal')) {
             window.top.document.getElementById('popupModal').style.display = 'none';
         }
-
-        // Redirect whole page
         window.top.location.href = 'dashboard.php';
-      </script>";
+    </script>";
         exit();
-
       } else {
         $errors[] = "Wrong username/password combination";
       }

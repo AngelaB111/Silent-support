@@ -1,6 +1,8 @@
 <?php
 include "connect.php";
-
+if (!isset($_SESSION['Therapist_username'])) {
+    die("Unauthorized access");
+}
 $assessments = $db->query("SELECT * FROM assessments ORDER BY assessment_id DESC");
 
 $editMode = false;

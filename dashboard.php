@@ -1,6 +1,8 @@
 <?php
 include('connect.php');
-
+if (!isset($_SESSION['Therapist_username'])) {
+    die("Unauthorized access");
+}
 $filter = isset($_GET['status']) ? $_GET['status'] : 'all';
 $sql_where = '';
 

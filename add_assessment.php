@@ -1,5 +1,8 @@
 <?php
 include "connect.php";
+if (!isset($_SESSION['Therapist_username'])) {
+    die("Unauthorized access");
+}
 $success = false;
 $error_message = "";
 
