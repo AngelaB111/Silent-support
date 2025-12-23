@@ -10,7 +10,7 @@ $admin_id = $_SESSION['Therapist_id'];
 $username = trim($_POST['username'] ?? '');
 $password = trim($_POST['password'] ?? '');
 $confirm = trim($_POST['confirm_password'] ?? '');
-
+$email =  trim($_POST['email'] ?? '');
 $success_msg = [];
 $error_msg = [];
 
@@ -21,6 +21,18 @@ if (!empty($username)) {
     if ($stmt_user->execute()) {
         $_SESSION['Therapist_username'] = $username;
         $success_msg[] = "Username updated successfully.";
+    } else {
+        $error_msg[] = "Failed to update username: " . $stmt_user->error;
+    }
+}
+
+if (!empty($email)) {
+    $stmt_user = $db->prepare("UPDATE therapist SET email=? WHERE Therapist_Id=?");
+    $stmt_user->bind_param("si", $email, $admin_id);
+
+    if ($stmt_user->execute()) {
+        $_SESSION['email'] = $email;
+        $success_msg[] = "email updated successfully.";
     } else {
         $error_msg[] = "Failed to update username: " . $stmt_user->error;
     }

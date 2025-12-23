@@ -1,21 +1,20 @@
-/* Ensure the page background is consistent */
+
 body {
   background: #f8f9fa;
   margin: 0;
-  font-family: "Segoe UI", Roboto, sans-serif;
+  font-family: "Segoe UI", "Roboto", "sans-serif";
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Centers the profile card on the page below the nav */
 .profile-card {
   max-width: 450px;
   width: 90%;
   background: #ffffff;
   padding: 35px;
-  margin: 60px auto; /* Centers horizontally and adds top space */
-  border-radius: 24px; /* Matches the detail-card rounding */
+  margin: 60px auto;
+  border-radius: 24px; 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
