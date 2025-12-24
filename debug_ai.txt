@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "I hear you, and it sounds like you're feeling a lot of anxiety right now. That's a really challenging and often overwhelming feeling to experience, and it's completely okay to feel that way.\n\nWhen anxiety feels overwhelming, sometimes focusing on your breath can offer a small anchor. Could you try placing a hand on your stomach and taking a slow, deep breath in through your nose, feeling your stomach rise, then exhaling slowly through your mouth? Repeat that a few times, gently bringing your attention to the sensation of your breath.\n\nRemember to be kind and patient with yourself in this moment. Even small acts of self-care can make a difference."
+            "text": "It sounds like you're in a really tough spot right now, and it's completely understandable to feel that way. That feeling of \"moving through mud\" is a very real, often hidden, part of many healing journeys.\n\nHealing isn't always about a sudden transformation or feeling \"fixed.\" Sometimes, it looks like small, gentle shifts: a flicker of peace, a moment of less judgment towards yourself, or finding a new way to cope with a difficult feeling. It's often non-linear, with ups and downs, and those muddy patches are just as much a part of the process as any clear path.\n\nFor today, perhaps focus on just one small act of kindness towards yourself. It could be noticing your breath for a few moments, or simply acknowledging how hard you're working right now. Be gentle with yourself as you navigate this; you're doing important work."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 63,
-    "candidatesTokenCount": 136,
-    "totalTokenCount": 750,
+    "promptTokenCount": 83,
+    "candidatesTokenCount": 183,
+    "totalTokenCount": 1082,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 63
+        "tokenCount": 83
       }
     ],
-    "thoughtsTokenCount": 551
+    "thoughtsTokenCount": 816
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "P49Jab-1KYyXvdIP0r7GsQg"
+  "responseId": "jQxMaee-MJ_yvdIP84W60As"
 }

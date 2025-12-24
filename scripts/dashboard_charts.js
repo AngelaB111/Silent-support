@@ -37,22 +37,5 @@ function initCharts(data) {
         }
     });
 
-    new Chart(document.getElementById('assessmentChart'), {
-        type: 'line',
-        data: {
-            labels: data.assessmentTitles,
-            datasets: [{
-                label: 'Attempts',
-                data: data.assessmentCounts,
-                borderColor: '#9b59b6',
-                backgroundColor: 'rgba(155, 89, 182, 0.1)',
-                fill: true,
-                tension: 0.3
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
+   
 }
