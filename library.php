@@ -27,31 +27,20 @@ if (!empty($params)) {
     $result = $db->query($query);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <title>Library</title>
-
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
     <link rel="stylesheet" href="styles/navbar.css" />
-
     <link rel="stylesheet" href="styles/library.css?v=9">
 </head>
-
 <body>
-
     <?php include("navbar.php") ?>
     <h1 class="page-title">Library</h1>
-
     <div class="search-bar-container">
         <form method="GET" class="search-form">
             <input type="text" name="search" class="search-input" placeholder="search for keyword in title or author..."
@@ -67,35 +56,22 @@ if (!empty($params)) {
         </form>
     </div>
     <div class="library-container">
-
         <?php if ($result->num_rows === 0): ?>
             <p class="no-results">No books found matching your search for "<?php echo htmlspecialchars($searchTerm); ?>".
             </p>
         <?php else: ?>
-
             <?php while ($row = $result->fetch_assoc()) { ?>
-
                 <div class="book-card">
-
                     <img src="<?php echo $row['cover_image']; ?>" class="book-cover" alt="Book Cover">
-
                     <h3 class="book-title"><?php echo $row['title']; ?></h3>
                     <p class="book-author"><?php echo $row['author']; ?></p>
-
                     <a href="<?php echo $row['pdf_file']; ?>" download class="download-btn">
                         <span class="download"><img src="icons/downloads.png"></span> Download
                     </a>
-
                 </div>
-
             <?php } ?>
         <?php endif; ?>
-
     </div>
-
-
     <?php include("footer.php") ?>
-
 </body>
-
 </html>
