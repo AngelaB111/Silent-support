@@ -90,6 +90,9 @@ $questions_result = $db->query($questions_sql);
     <?php endif; ?>
   </div>
 
+
+  <?php include("footer.php") ?>
+
 </body>
 
 </html>

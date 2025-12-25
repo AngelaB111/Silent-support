@@ -15,8 +15,8 @@ $result = $db->query($sql);
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="styles/navbar.css?v=3" />
-  <link rel="stylesheet" href="styles/assessments.css?v=6" />
+  <link rel="stylesheet" href="styles/navbar.css" />
+  <link rel="stylesheet" href="styles/assessments.css" />
 </head>
 
 <body>
@@ -52,6 +52,9 @@ $result = $db->query($sql);
     </div>
   </div>
 </body>
+
+
+<?php include("footer.php") ?>
 
 </html>
 

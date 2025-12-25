@@ -11,8 +11,8 @@
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-  <link rel="stylesheet" href="styles/navbar.css?v=3" />
-  <link rel="stylesheet" href="styles/style2.css?v=5">
+  <link rel="stylesheet" href="styles/navbar.css?v=9" />
+  <link rel="stylesheet" href="styles/style2.css?v=6">
 
 </head>
 
@@ -67,6 +67,7 @@
   </div>
 
 
+  <div class="line"> </div>
   <div class="container">
 
     <div class="card" onclick="location.href='messaging-page.php'">
@@ -97,7 +98,7 @@
       <p>chat with an AI bot</p>
     </div>
   </div>
- <div class="line"> </div>
+  <div class="line"> </div>
   <section class="disclaimer">
     <h1>Disclaimer</h1>
     <div class="disclaimer-grid">
@@ -128,6 +129,8 @@
 
     </div>
   </section>
+
+  <?php include("footer.php") ?>
 
 </body>
 

@@ -65,6 +65,10 @@
             <iframe src="success.php" frameborder="0"></iframe>
         </div>
     </div>
+    
+
+  <?php include("footer.php") ?>
+
 </body>
 
 </html>

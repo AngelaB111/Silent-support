@@ -148,7 +148,7 @@ if (!empty($params)) {
                     <a href="publicview.php?post_id=<?php echo $row['post_id']; ?>&post_num=<?php echo $postCounter; ?>"
                         class="view-btn">
                         view reply
-                        </a>
+                    </a>
                 </div>
                 <?php $postCounter++; ?>
             <?php endwhile; ?>
@@ -158,6 +158,9 @@ if (!empty($params)) {
     </div>
 
 </body>
+
+
+<?php include("footer.php") ?>
 
 </html>
 <script src="scripts/script.js" defer></script>

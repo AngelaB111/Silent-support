@@ -106,3 +106,15 @@ header.navbar .back-btn {
 .close-btn:hover {
   color: #000;
 }
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footer-bottom p {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  color: #9ca3af;
+}

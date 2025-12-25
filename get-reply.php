@@ -43,6 +43,9 @@
 
         </div>
 
+
+        <?php include("footer.php") ?>
+
     </body>
 
 </html>
@@ -76,6 +79,3 @@
     }
 </script>
 <script src="scripts/script.js" defer></script>
-</body>
-
-</html>
