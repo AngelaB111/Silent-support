@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "It sounds like you're in a really tough spot right now, and it's completely understandable to feel that way. That feeling of \"moving through mud\" is a very real, often hidden, part of many healing journeys.\n\nHealing isn't always about a sudden transformation or feeling \"fixed.\" Sometimes, it looks like small, gentle shifts: a flicker of peace, a moment of less judgment towards yourself, or finding a new way to cope with a difficult feeling. It's often non-linear, with ups and downs, and those muddy patches are just as much a part of the process as any clear path.\n\nFor today, perhaps focus on just one small act of kindness towards yourself. It could be noticing your breath for a few moments, or simply acknowledging how hard you're working right now. Be gentle with yourself as you navigate this; you're doing important work."
+            "text": "It sounds like you've been navigating some incredibly difficult family dynamics this week, and it's completely understandable that you're feeling so overwhelmed. That's a lot to carry.\n\nPerhaps finding a quiet moment to just breathe deeply could offer a little space for yourself right now. And please remember to be gentle with yourself as you move forward."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 83,
-    "candidatesTokenCount": 183,
-    "totalTokenCount": 1082,
+    "promptTokenCount": 76,
+    "candidatesTokenCount": 71,
+    "totalTokenCount": 854,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 83
+        "tokenCount": 76
       }
     ],
-    "thoughtsTokenCount": 816
+    "thoughtsTokenCount": 707
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "jQxMaee-MJ_yvdIP84W60As"
+  "responseId": "nA5ZabyJLMKmkdUPqJHqkQo"
 }

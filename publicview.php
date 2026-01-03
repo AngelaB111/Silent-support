@@ -39,9 +39,9 @@ $post = $result->fetch_assoc();
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" href="styles/navbar.css?v=3" />
+    <link rel="stylesheet" href="styles/navbar.css" />
 
-    <link rel="stylesheet" href="styles/public.css?v=6">
+    <link rel="stylesheet" href="styles/public.css">
 </head>
 
 <body>
@@ -52,15 +52,15 @@ $post = $result->fetch_assoc();
 
         <div class="post-header-info">
 
-            <div class="title1">💬 Public Message #<?php echo htmlspecialchars($post_counter_num); ?></div>
+            <div class="title1"> <i class="fa fa-envelope-o" aria-hidden="true"></i> Public Message #<?php echo htmlspecialchars($post_counter_num); ?></div>
 
 
-        </div>
+      
         <div class="user-message">
             <?php echo nl2br(htmlspecialchars($post['question'])); ?>
         </div>
 
-        <div class="reply-header">Official Reply</div>
+        <div class="reply-header"><i class="fa fa-comments-o" aria-hidden="true"></i>Reply:</div>
 
         <div class="reply">
             <?php
@@ -71,10 +71,12 @@ $post = $result->fetch_assoc();
             }
             ?>
         </div>
-
+  </div>
 
     </div>
 
+
+<?php include("footer.php") ?>
 </body>
 
 </html>

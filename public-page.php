@@ -68,7 +68,7 @@ if (!empty($params)) {
 
 
     <link rel="stylesheet" href="styles/navbar.css" />
-    <link rel="stylesheet" href="styles/public.css?v=9">
+    <link rel="stylesheet" href="styles/public.css?v=6">
 </head>
 
 <body>
@@ -76,39 +76,35 @@ if (!empty($params)) {
     <?php include("navbar.php"); ?>
 
     <h1 class="title">Public Questions & Answers</h1>
+    <form method="GET" class="filter-controls">
+        <div class="search-group">
+            <i class="fa fa-search search-icon"></i>
+            <input type="text" name="search" class="search-input" placeholder="Search by keywords..."
+                value="<?php echo htmlspecialchars($searchTerm); ?>">
+        </div>
 
+        <div class="category-group">
+            <select name="category" class="category-select">
+                <option value="">Filter by Category</option>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?php echo htmlspecialchars($category); ?>" <?php echo ($selectedCategory === $category) ? 'selected' : ''; ?>>
+                        <?php echo htmlspecialchars($category); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <button type="submit" class="search-btn">
+            <i class="fa fa-filter"></i> Filter Search
+        </button>
+
+        <?php if (!empty($searchTerm) || !empty($selectedCategory)): ?>
+            <a href="public-page.php" class="clear-search-btn">
+                <i class="fa fa-times"></i> Clear
+            </a>
+        <?php endif; ?>
+    </form>
     <div class="wrapper">
-
-        <form method="GET" class="filter-controls">
-
-            <div class="search-group">
-                <input type="text" name="search" class="search-input" placeholder="Search by keywords..."
-                    value="<?php echo htmlspecialchars($searchTerm); ?>">
-            </div>
-
-            <div class="category-group">
-                <select name="category" class="category-select">
-                    <option class="cat" value="">Filter by Category</option>
-                    <?php foreach ($categories as $category): ?>
-                        <option value="<?php echo htmlspecialchars($category); ?>">
-                            <?php echo ($selectedCategory === $category) ? 'selected' : ''; ?>
-
-                            <?php echo htmlspecialchars($category); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <button type="submit" class="search-btn">
-                <i class="fa fa-filter"></i> Filter Search
-            </button>
-
-            <?php if (!empty($searchTerm) || !empty($selectedCategory)): ?>
-                <a href="public-page.php" class="clear-search-btn">
-                    <i class="fa fa-times"></i> Clear Search/Filters
-                </a>
-            <?php endif; ?>
-        </form>
         <?php if ($result->num_rows === 0): ?>
             <p class="no-results">
                 No public questions match your current filters.
@@ -132,16 +128,18 @@ if (!empty($params)) {
                             </span>
 
                         </div>
-
                         <div class="card-info">
                             <span class="message-id-tag">
-                                Message# <?php echo $postCounter; ?>
-                            </span>
-                            <span class="category-tag">
-                                Category: <?php echo htmlspecialchars($row['category']); ?>
+                                <i class="fa fa-envelope"></i>
+                                Message #<?php echo $postCounter; ?>
                             </span>
 
+                            <span class="category-tag">
+                                <i class="fa fa-tag"></i>
+                                <?php echo htmlspecialchars($row['category']); ?>
+                            </span>
                         </div>
+
 
                     </div>
 
@@ -165,6 +163,6 @@ if (!empty($params)) {
 </html>
 
 <script>
-  (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "RxU2NixvO8dnE0x3jXRA7"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+    (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "RxU2NixvO8dnE0x3jXRA7"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
 </script>
 <script src="scripts/script.js" defer></script>
