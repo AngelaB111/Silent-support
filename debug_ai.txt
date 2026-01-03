@@ -8,7 +8,7 @@ RESPONSE:
       "content": {
         "parts": [
           {
-            "text": "It sounds like you've been navigating some incredibly difficult family dynamics this week, and it's completely understandable that you're feeling so overwhelmed. That's a lot to carry.\n\nPerhaps finding a quiet moment to just breathe deeply could offer a little space for yourself right now. And please remember to be gentle with yourself as you move forward."
+            "text": "Thank you for sharing such an honest and vulnerable glimpse into what you're experiencing. I hear how incredibly heavy and confusing this \"persistent fog\" must feel, especially when there isn't a clear reason you can point to. It's truly understandable that not knowing the 'why' makes it feel even more perplexing, and that your energy and interest are impacted. Please know that these feelings are very real and valid, even without a specific event to explain them.\n\nIt takes a lot of strength to simply acknowledge where you're at. As you navigate this, try to offer yourself extra kindness and compassion. Perhaps you could try just one small, gentle act of comfort today—like a warm drink, listening to a favorite calming song, or simply allowing yourself a few moments of quiet rest.\n\nIf these feelings continue to be a significant struggle, reaching out to a mental health professional can offer you a supportive space to explore them further and discover personalized ways to navigate this period."
           }
         ],
         "role": "model"
@@ -18,17 +18,17 @@ RESPONSE:
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 76,
-    "candidatesTokenCount": 71,
-    "totalTokenCount": 854,
+    "promptTokenCount": 189,
+    "candidatesTokenCount": 198,
+    "totalTokenCount": 1570,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 76
+        "tokenCount": 189
       }
     ],
-    "thoughtsTokenCount": 707
+    "thoughtsTokenCount": 1183
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "nA5ZabyJLMKmkdUPqJHqkQo"
+  "responseId": "AnxZaeSKJsmMvdIPj9Pe0Qg"
 }
