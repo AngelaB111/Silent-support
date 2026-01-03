@@ -34,22 +34,23 @@ $stmt1->close();
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="styles/navbar.css?v=3" />
-    <link rel="stylesheet" href="styles/styleprivate.css?v=4" />
-    <title>Message #<?php echo htmlspecialchars($message['message_id']); ?></title>
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/styleprivate.css?v=7" />
 </head>
 
 <body>
     <?php include("navbar.php") ?>
     <span class="body1">
         <div class="container">
-            <div class="title">Private Message </div>
+            
+            <div class="title">  <i class="fa fa-envelope-o" aria-hidden="true"></i>Private Message </div>
 
             <div class="user-message">
                 <?php echo nl2br(htmlspecialchars($message['content'])); ?>
             </div>
 
             <?php if (!empty($reply['reply_content'])): ?>
+                    <div class="reply-header"><i class="fa fa-comments-o" aria-hidden="true"></i>Reply:</div>
                 <div class="reply">
                     <?php echo nl2br(htmlspecialchars($reply['reply_content'])); ?>
                 </div>

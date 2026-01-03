@@ -10,7 +10,7 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles/navbar.css?v=4" />
-    <link rel="stylesheet" href="styles/retrieve.css?v=5">
+    <link rel="stylesheet" href="styles/retrieve.css?v=6">
 </head>
 
 <body>
@@ -19,9 +19,9 @@
         <?php include("navbar.php") ?>
 
         <div class="container main-content-container">
-            <h1 class="page-title">Retrieve your reply</h1>
-
+            
             <div class="form-box">
+                <h1 class="page-title">Retrieve your reply</h1>
                 <div id="submission-status-message" class="status-box" style="display:none;"></div>
 
                 <div class="input-group-field">
@@ -36,8 +36,8 @@
 
                 <div class="button-group">
                     <button class="custom-btn primary-btn">Get Reply</button>
-                    <button class="custom-btn secondary-btn" onclick="location.href='messaging-page.php'">send a new
-                        message</button>
+                    <button class="custom-btn secondary-btn" onclick="location.href='messaging-page.php'">Send a
+                        Message</button>
                 </div>
             </div>
 

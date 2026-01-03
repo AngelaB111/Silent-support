@@ -10,14 +10,18 @@ body {
   min-height: 80vh;
 }
 .container {
-  background-color: #f2f2f2;
+
+  border-left: 3px solid #eac645;
+  background: linear-gradient(170deg, #fcfcfc, #ebebeb);
   border-radius: 16px;
   padding: 2rem;
   width: 90%;
   max-width: 700px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
-.title {
+.reply-header { 
+  padding-top: 1rem;}
+.title, .reply-header {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -35,10 +39,19 @@ body {
   line-height: 1.6;
   margin-top: 1rem;
 }
+.user-message { 
+  font-weight: 530;
+    color: #1a119bc4;
+}
 .reply {
   font-weight: 500;
 }
 .no-reply {
   color: #777;
   font-style: italic;
+}
+
+
+.fa-envelope-o, .fa-comments-o { 
+color: #eac645;
 }

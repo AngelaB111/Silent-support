@@ -102,5 +102,5 @@ p.subtitle {
   cursor: pointer;
 }
 .submit-assessment:hover {
-  background-color: #9c9c9c;
+  background: linear-gradient(135deg, #f4d76d, #debb46);
 }

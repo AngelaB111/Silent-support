@@ -88,7 +88,7 @@ body {
 
 .book-card {
   width: 280px;
-  background: #f0d769;
+  background: radial-gradient( #faebaf, #f0d769); 
   border-radius: 12px;
   padding: 20px;
   text-align: center;
