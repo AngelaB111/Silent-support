@@ -93,8 +93,8 @@
       <p>take an assessment</p>
     </div>
 
-    <div class="card" onclick="location.href='get-reply.php'">
-      <img src="icons/button-chat.png" alt="retrieve reply">
+    <div class="card" onclick="window.chatbase('open')">
+      <img src="icons/button-chat.png" alt="chat with ai">
       <p>chat with an AI bot</p>
     </div>
   </div>

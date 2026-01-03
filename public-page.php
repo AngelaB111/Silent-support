@@ -68,7 +68,7 @@ if (!empty($params)) {
 
 
     <link rel="stylesheet" href="styles/navbar.css" />
-    <link rel="stylesheet" href="styles/public.css?v=6">
+    <link rel="stylesheet" href="styles/public.css?v=7">
 </head>
 
 <body>

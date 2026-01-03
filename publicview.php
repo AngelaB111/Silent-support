@@ -41,7 +41,7 @@ $post = $result->fetch_assoc();
 
     <link rel="stylesheet" href="styles/navbar.css" />
 
-    <link rel="stylesheet" href="styles/public.css">
+    <link rel="stylesheet" href="styles/public.css?v=5">
 </head>
 
 <body>

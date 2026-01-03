@@ -10,6 +10,8 @@ body {
   text-align: center;
 }
 h1 {
+  color: #333;
+  font-weight: 700;
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
@@ -52,7 +54,7 @@ p.subtitle {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .card button:hover {
-  background-color: #8c8c8a;
+  background: linear-gradient(135deg, #f4d76d, #debb46);
 }
 .disclaimer {
   margin-top: 4rem;
